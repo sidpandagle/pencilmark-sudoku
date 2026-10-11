@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Promo background</title></head>
+<body>
+<script type="module">
+// Promotional background (slides, video backdrops, landing-page hero). ?w=&h=&theme=light|dark|brand
+// Paper, faint grid and an off-centre board outline with the three pencil-mark dots; the centre stays clear.
+import { stage, div, TOKENS, el, stillReady, params } from '../lib/pm.js';
+const { W, H } = stage();
+const theme = params.get('theme') || 'light';
+const b = TOKENS.brand;
+const k = TOKENS[theme === 'brand' ? 'dark' : theme];
+document.body.style.background = theme === 'brand' ? `linear-gradient(160deg, ${b.inkTop}, ${b.inkBottom})` : k.bg;
+const lineCol = theme === 'brand' ? b.paper + '30' : k.line + '55';
+const g = div('');
+g.style.cssText = `position:absolute;inset:0;background-image:linear-gradient(${lineCol} 2px,transparent 2px),linear-gradient(90deg,${lineCol} 2px,transparent 2px);background-size:${Math.min(W, H) / 9}px ${Math.min(W, H) / 9}px`;
+const s = Math.max(W, H) * 0.62;
+const svg = el('svg', { width: s, height: s, viewBox: '0 0 900 900', style: `position:absolute;right:${-s * 0.28}px;bottom:${-s * 0.3}px;opacity:${theme === 'light' ? 0.5 : 0.35}` }, document.body);
+const stroke = theme === 'brand' ? b.paper : k.lineStrong;
+el('rect', { x: 4, y: 4, width: 892, height: 892, rx: 20, fill: 'none', stroke, 'stroke-width': 8 }, svg);
+for (let i = 1; i < 9; i++) el('path', { d: `M${i * 100} 0V900M0 ${i * 100}H900`, stroke, 'stroke-width': i % 3 ? 2 : 6, opacity: i % 3 ? 0.5 : 1 }, svg);
+for (const [x, y] of [[40, 40], [72, 40], [40, 72]]) el('circle', { cx: x, cy: y, r: 10, fill: theme === 'light' ? k.accent : b.dot }, svg);
+await stillReady();
+</script>
+</body></html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>YouTube thumbnail</title>
+<style>
+  .txt{position:absolute;left:64px;top:70px;width:560px}
+  .kick{display:inline-block;font-size:30px;font-weight:800;padding:8px 20px;border-radius:999px;color:#fff;letter-spacing:.02em}
+  .t{font-size:104px;font-weight:900;letter-spacing:-0.035em;line-height:0.98;margin-top:22px}
+  .s{font-size:42px;font-weight:700;margin-top:22px}
+  .brand{position:absolute;left:64px;bottom:52px;display:flex;align-items:center;gap:18px;font-size:34px;font-weight:900}
+</style></head>
+<body>
+<script type="module">
+// YouTube thumbnail template, 1280x720. ?tech=x-wing&title=...&sub=...&kick=...
+// The board is the real engine position used in the matching explainer (data/explainers.json).
+import { stage, baseCSS, div, TOKENS, Board, heroBoard, loadJSON, markSVG, stillReady, params } from '../lib/pm.js';
+stage();
+baseCSS('light');
+const k = TOKENS.light;
+const all = await loadJSON('../../data/explainers.json');
+const X = all[params.get('tech') || 'x-wing'];
+div('paperGrid').style.opacity = 0.4;
+div('txt', document.body,
+  `<span class="kick" style="background:${k.accent}">${params.get('kick') || 'LEVEL ' + X.level + ' TECHNIQUE'}</span>` +
+  `<div class="t">${params.get('title') || X.name}</div>` +
+  `<div class="s" style="color:${k.hint}">${params.get('sub') || 'Explained on a real puzzle'}</div>`);
+const brand = div('brand', document.body, 'Pencilmark');
+brand.prepend(markSVG(64));
+const B = new Board(document.body, { x: 618, y: 52, size: 616 });
+heroBoard(B, X);
+B.svg.style.filter = 'drop-shadow(0 18px 30px rgba(30,39,51,.22))';
+await stillReady();
+</script>
+</body></html>

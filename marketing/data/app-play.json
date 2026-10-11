@@ -1,0 +1,102 @@
+{
+ "note": "Real play script for capture-app.mjs: import puzzle, enter entries, auto-fill notes, remove removals.",
+ "puzzle": "2.74..3...5...3..9983....64.....1......249......8.....42....8517..5...3...5..87.6",
+ "solution": "217496385654183279983752164542371698876249513391865427429637851768514932135928746",
+ "entries": [
+  {
+   "cell": 4,
+   "digit": 9
+  },
+  {
+   "cell": 11,
+   "digit": 4
+  },
+  {
+   "cell": 13,
+   "digit": 8
+  },
+  {
+   "cell": 15,
+   "digit": 2
+  },
+  {
+   "cell": 16,
+   "digit": 7
+  },
+  {
+   "cell": 23,
+   "digit": 2
+  },
+  {
+   "cell": 65,
+   "digit": 8
+  },
+  {
+   "cell": 68,
+   "digit": 4
+  },
+  {
+   "cell": 69,
+   "digit": 9
+  },
+  {
+   "cell": 71,
+   "digit": 2
+  },
+  {
+   "cell": 76,
+   "digit": 2
+  },
+  {
+   "cell": 79,
+   "digit": 4
+  }
+ ],
+ "removals": [
+  {
+   "cell": 28,
+   "digit": 6
+  },
+  {
+   "cell": 34,
+   "digit": 8
+  },
+  {
+   "cell": 36,
+   "digit": 1
+  },
+  {
+   "cell": 37,
+   "digit": 1
+  },
+  {
+   "cell": 37,
+   "digit": 6
+  },
+  {
+   "cell": 45,
+   "digit": 1
+  },
+  {
+   "cell": 46,
+   "digit": 1
+  },
+  {
+   "cell": 46,
+   "digit": 6
+  },
+  {
+   "cell": 52,
+   "digit": 1
+  },
+  {
+   "cell": 73,
+   "digit": 1
+  },
+  {
+   "cell": 75,
+   "digit": 3
+  }
+ ],
+ "expectedHint": "X-Wing on 1: in rows 2 and 9, 1 can only go in columns 1 and 4. One 1 per base line fills each of those columns, so remove 1 from r3c4."
+}

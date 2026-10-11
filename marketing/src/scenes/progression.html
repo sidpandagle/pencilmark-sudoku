@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Progression</title>
+<style>
+  .h1{position:absolute;left:72px;right:140px;top:190px;font-size:76px;font-weight:900;letter-spacing:-0.02em;line-height:1.05}
+  .lvl{position:absolute;left:250px;width:760px}
+  .lvl .t{font-size:44px;font-weight:800;letter-spacing:-0.01em}
+  .lvl .n{font-size:28px;font-weight:600;margin-left:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .chips span{font-size:25px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
+  .node{position:absolute;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900}
+  .foot{position:absolute;left:72px;right:140px;top:1470px;text-align:center;font-size:40px;font-weight:700}
+</style></head>
+<body>
+<script type="module">
+// Beginner-to-advanced progression (15 s): the app's real curriculum (data/curriculum.json, exported from
+// src/learn/curriculum.ts), level 1 at the bottom climbing to level 5, with each level's technique lessons.
+import { stage, baseCSS, register, loadJSON, div, css, seg, ease, env, TOKENS, endCard, el } from '../lib/pm.js';
+const { W, H } = stage();
+baseCSS('light');
+const k = TOKENS.light;
+const C = await loadJSON('../../data/curriculum.json');
+div('paperGrid').style.opacity = 0.35;
+const h1 = div('h1', document.body, `From first steps<br><span style="color:${k.accent}">to forcing chains.</span>`);
+const X = 170, Y0 = 1360, Y1 = 520;
+const ys = C.levels.map((_, i) => Y0 - (i * (Y0 - Y1)) / 4);
+const svg = el('svg', { width: W, height: H, style: 'position:absolute;left:0;top:0' }, document.body);
+el('path', { d: `M${X} ${Y0}V${Y1}`, stroke: k.line, 'stroke-width': 8, 'stroke-linecap': 'round' }, svg);
+const prog = el('path', { d: `M${X} ${Y0}V${Y1}`, stroke: k.accent, 'stroke-width': 8, 'stroke-linecap': 'round', pathLength: 1, 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1 }, svg);
+const SHORT = { 'Alternating Inference Chain': 'AIC', 'Unique Rectangle Type 1': 'Unique Rectangle 1', 'Unique Rectangle Type 2': 'UR 2', 'Unique Rectangle Type 4': 'UR 4' };
+const blocks = C.levels.map((lv, i) => {
+  const lessons = C.lessons.filter((l) => l.level === lv.id);
+  const techs = lessons.filter((l) => l.kind === 'technique').map((l) => SHORT[l.title] || l.title);
+  const maxChips = 4;
+  const shown = techs.slice(0, maxChips);
+  const node = div('node', document.body, lv.id);
+  node.style.left = X + 'px'; node.style.top = ys[i] + 'px';
+  const b = div('lvl', document.body,
+    `<div><span class="t">${lv.title.replace('Level ' + lv.id + ' · ', '')}</span><span class="n muted">Level ${lv.id} · ${lessons.length} lessons</span></div>` +
+    `<div class="chips">${shown.map((s) => `<span>${s}</span>`).join('')}${techs.length > maxChips ? `<span class="more">+${techs.length - maxChips} more</span>` : ''}</div>`);
+  b.style.top = ys[i] - 36 + 'px';
+  return { node, b, chips: [...b.querySelectorAll('.chips span')], at: 1.3 + i * 1.9 };
+});
+const foot = div('foot', document.body, `${C.lessons.length} lessons · 5 levels · works offline`);
+const end = endCard(W, H);
+
+register(15.0, (t) => {
+  const a = ease.out(seg(t, 0, 0.7));
+  css(h1, { opacity: a, transform: `translateY(${(1 - a) * 30}px)` });
+  prog.setAttribute('stroke-dashoffset', 1 - ease.inOut(seg(t, 1.2, 1.3 + 4 * 1.9)));
+  blocks.forEach((bl, i) => {
+    const p = ease.out(seg(t, bl.at, bl.at + 0.5));
+    const active = env(t, bl.at, bl.at + 1.9, 0.2, 0.3) || (i === 4 && t > bl.at ? 1 : 0);
+    const reached = t >= bl.at;
+    css(bl.node, { background: reached ? k.accent : k.surface, color: reached ? '#fff' : k.inkMuted, border: `5px solid ${reached ? k.accent : k.line}`,
+      transform: `scale(${1 + 0.18 * active})`, boxShadow: active ? `0 0 0 ${10 * active}px ${k.accentSoft}` : 'none' });
+    css(bl.b, { opacity: 0.25 + 0.75 * p, transform: `translateX(${(1 - p) * 40}px)` });
+    bl.chips.forEach((c, j) => {
+      const q = ease.back(seg(t, bl.at + 0.25 + j * 0.12, bl.at + 0.55 + j * 0.12));
+      css(c, { opacity: Math.min(1, q), transform: `scale(${0.6 + 0.4 * q})`, background: c.classList.contains('more') ? 'transparent' : active > 0.5 ? k.hintSoft : k.surfaceAlt,
+        color: c.classList.contains('more') ? k.inkMuted : k.ink, border: `2px solid ${active > 0.5 ? k.hint : 'transparent'}` });
+    });
+  });
+  const f = ease.out(seg(t, 10.2, 10.8));
+  css(foot, { opacity: f, transform: `translateY(${(1 - f) * 20}px)` });
+  end(seg(t, 11.8, 15.0), t);
+});
+</script>
+</body></html>

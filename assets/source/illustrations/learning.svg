@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="180" viewBox="0 0 240 180" color="#1E2733"
+     fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!--
+    Learning mode: a magnifier over the board showing a cell's pencil marks.
+    Shape cues match DESIGN.md: amber ring = pattern candidate, red slash = eliminated candidate.
+    Line colour is currentColor; accents use fixed palette colours. All strokes 3 px at 240x180.
+  -->
+  <ellipse cx="120" cy="164" rx="86" ry="6" fill="#C9C2B4" fill-opacity="0.35" stroke="none"/>
+  <rect x="30" y="30" width="120" height="120" rx="10" fill="#FFFDF8"/>
+  <path d="M70 30v120M110 30v120M30 70h120M30 110h120" stroke="#C9C2B4"/>
+  <rect x="30" y="30" width="120" height="120" rx="10"/>
+  <rect x="72" y="72" width="36" height="36" rx="4" fill="#DCE6F6" stroke="none"/>
+  <g transform="translate(178 114) rotate(-45)">
+    <rect x="-7" y="2" width="14" height="38" rx="6" fill="#2F5DA8"/>
+  </g>
+  <circle cx="152" cy="88" r="40" fill="#FFFDF8"/>
+  <circle cx="152" cy="88" r="40" fill="#DCE6F6" fill-opacity="0.45" stroke="none"/>
+  <g fill="#5E6B7A" stroke="none">
+    <circle cx="136" cy="72" r="3.5"/>
+    <circle cx="168" cy="72" r="3.5"/>
+    <circle cx="136" cy="88" r="3.5"/>
+    <circle cx="136" cy="104" r="3.5"/>
+    <circle cx="152" cy="104" r="3.5"/>
+  </g>
+  <circle cx="152" cy="72" r="3.5" fill="#C98A1B" stroke="none"/>
+  <circle cx="152" cy="72" r="9" stroke="#C98A1B"/>
+  <circle cx="168" cy="104" r="3.5" fill="#C0392B" stroke="none"/>
+  <path d="M161 111l14-14" stroke="#C0392B"/>
+  <circle cx="152" cy="88" r="40"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    Splash icon: full brand mark (rounded ink-blue square) on a transparent canvas.
+    The square is 540 px (rx 116) so its corners stay inside the centred 2/3 circle (radius 341 px)
+    that Android 12+ uses to mask splash icons. Reads on both light (#F4F1EA) and dark (#11151B) backgrounds.
+  -->
+  <defs>
+    <linearGradient id="inkBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2D5193"/>
+      <stop offset="1" stop-color="#1B2B47"/>
+    </linearGradient>
+  </defs>
+  <rect x="242" y="242" width="540" height="540" rx="116" fill="url(#inkBlue)"/>
+  <g transform="translate(355.25 355.25) scale(0.5225)">
+    <g fill="none" stroke="#F4F1EA" stroke-linecap="round">
+      <rect x="14" y="14" width="572" height="572" rx="56" stroke-width="28"/>
+      <path d="M200 14V586M400 14V586M14 200H586M14 400H586" stroke-width="16"/>
+    </g>
+    <g fill="#8DB2FF">
+      <circle cx="66" cy="66" r="17"/>
+      <circle cx="118" cy="66" r="17"/>
+      <circle cx="66" cy="118" r="17"/>
+    </g>
+    <g transform="translate(300 300) rotate(-45)">
+      <rect x="-88" y="-24" width="20" height="48" rx="6" fill="#8DB2FF"/>
+      <rect x="-64" y="-24" width="100" height="48" fill="#F2C062"/>
+      <path d="M36 -24L88 0L36 24Z" fill="#F4E6C8"/>
+      <path d="M71 -7.8L88 0L71 7.8Z" fill="#1E2733"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="180" viewBox="0 0 240 180" color="#1E2733"
+     fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!--
+    Completion: a finished grid (all cells tinted success) with a check seal and pencil-mark confetti.
+    Line colour is currentColor; accents use fixed palette colours. All strokes 3 px at 240x180.
+  -->
+  <ellipse cx="120" cy="164" rx="80" ry="6" fill="#C9C2B4" fill-opacity="0.35" stroke="none"/>
+  <rect x="56" y="28" width="120" height="120" rx="12" fill="#FFFDF8"/>
+  <g fill="#DDEFE5" stroke="none">
+    <rect x="62" y="34" width="34" height="34" rx="4"/>
+    <rect x="99" y="34" width="34" height="34" rx="4"/>
+    <rect x="136" y="34" width="34" height="34" rx="4"/>
+    <rect x="62" y="71" width="34" height="34" rx="4"/>
+    <rect x="99" y="71" width="34" height="34" rx="4"/>
+    <rect x="136" y="71" width="34" height="34" rx="4"/>
+    <rect x="62" y="108" width="34" height="34" rx="4"/>
+    <rect x="99" y="108" width="34" height="34" rx="4"/>
+    <rect x="136" y="108" width="34" height="34" rx="4"/>
+  </g>
+  <path d="M96 30v116M136 30v116M58 68h116M58 108h116" stroke="#C9C2B4"/>
+  <rect x="56" y="28" width="120" height="120" rx="12"/>
+  <circle cx="172" cy="136" r="24" fill="#2E7D55"/>
+  <path d="M161 136l7 7 14-14" stroke="#FFFDF8"/>
+  <g stroke="none">
+    <rect x="30" y="44" width="7" height="7" rx="1.5" fill="#2F5DA8" transform="rotate(18 33.5 47.5)"/>
+    <rect x="198" y="40" width="7" height="7" rx="1.5" fill="#C98A1B" transform="rotate(-14 201.5 43.5)"/>
+    <rect x="38" y="112" width="6" height="6" rx="1.5" fill="#D2691E" transform="rotate(30 41 115)"/>
+    <rect x="206" y="88" width="6" height="6" rx="1.5" fill="#2E7D55" transform="rotate(-25 209 91)"/>
+    <circle cx="190" cy="18" r="3" fill="#2F5DA8"/>
+    <circle cx="44" cy="20" r="3" fill="#C98A1B"/>
+  </g>
+</svg>

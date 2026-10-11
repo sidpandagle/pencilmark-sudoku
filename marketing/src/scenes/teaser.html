@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Launch teaser</title>
+<style>
+  .big{position:absolute;font-weight:900;letter-spacing:-0.03em;line-height:1.02;white-space:nowrap}
+  .cap{position:absolute;font-weight:800;letter-spacing:-0.015em;line-height:1.1}
+  .shot{position:absolute;border-radius:36px;overflow:hidden;box-shadow:0 30px 60px rgba(30,39,51,.25);border:10px solid #141A22;background:#141A22}
+  .shot img{display:block;width:100%;height:100%;border-radius:26px}
+</style></head>
+<body>
+<script type="module">
+// Launch teaser (12 s), portrait 1080x1920 or landscape 1920x1080 from the same source.
+// Beat 2 is the real X-Wing from data/explainers.json; beat 3 shows real app captures.
+import { stage, baseCSS, register, loadJSON, Board, div, css, seg, ease, env, TOKENS, endCard, bx, by, unitCells } from '../lib/pm.js';
+const { W, H, portrait } = stage();
+baseCSS('light');
+const k = TOKENS.light;
+const X = (await loadJSON('../../data/explainers.json'))['x-wing'];
+div('paperGrid').style.opacity = 0.35;
+const L = portrait
+  ? { bigX: 72, bigY: 700, big: 116, capX: 72, capY: 250, capW: 868, cap: 72, boardX: 135, boardY: 560, board: 810, shotsY: 600, shotH: 780 }
+  : { bigX: 160, bigY: 330, big: 170, capX: 120, capY: 380, capW: 700, cap: 84, boardX: 1000, boardY: 120, board: 840, shotsY: 150, shotH: 790 };
+const big1 = div('big', document.body, 'Stop guessing.');
+const big2 = div('big', document.body, `<span style="color:${k.accent}">Start seeing.</span>`);
+for (const [i, b] of [big1, big2].entries()) b.style.cssText += `;left:${L.bigX}px;top:${L.bigY + i * L.big * 1.1}px;font-size:${L.big}px`;
+const cap1 = div('cap', document.body, `See <span style="color:${k.hint}">why</span> every move works.`);
+const cap2 = div('cap', document.body, `42 lessons.<br>Hints that teach.<br><span style="color:${k.accent}">All offline.</span>`);
+for (const c of [cap1, cap2]) c.style.cssText += `;left:${L.capX}px;top:${L.capY}px;width:${L.capW}px;font-size:${L.cap}px`;
+const B = new Board(document.body, { x: L.boardX, y: L.boardY, size: L.board });
+const files = ['learn-map', 'hint-3-explain', 'play-dark'];
+const shots = files.map((f) => { const d = div('shot'); d.innerHTML = `<img src="../../captures/${f}.png">`; return d; });
+await Promise.all([...document.images].map((i) => i.decode()));
+const sw = Math.round((L.shotH * 1170) / 2532);
+const centerX = portrait ? W / 2 : 1410;
+shots.forEach((s, i) => { s.style.width = sw + 'px'; s.style.height = L.shotH + 'px'; s.style.top = L.shotsY + 'px'; s.style.left = centerX - sw / 2 + 'px'; });
+const d = X.step.candidates[0].digit, pc = X.step.patternCells, [a, b2, c3, d4] = pc, el = X.step.eliminations;
+const end = endCard(W, H);
+
+register(12.0, (t) => {
+  // beat 1: hook
+  for (const [i, bg] of [big1, big2].entries()) {
+    const p = ease.out(seg(t, 0.15 + i * 0.75, 0.6 + i * 0.75));
+    css(bg, { opacity: p * (1 - seg(t, 2.2, 2.5)), transform: `translateY(${(1 - p) * 40}px)` });
+  }
+  // beat 2: a real X-Wing elimination
+  const bOn = env(t, 2.4, 6.3, 0.3, 0.3);
+  B.begin();
+  css(B.svg, { opacity: bOn });
+  B.lines(ease.inOut(seg(t, 2.4, 3.0)));
+  for (let c = 0; c < 81; c++) if (X.grid[c]) B.digit(c, X.grid[c], { op: seg(t, 2.6, 3.0), color: X.givens[c] ? k.ink : k.accent, weight: X.givens[c] ? 600 : 500 });
+  const pOn = seg(t, 3.4, 3.7);
+  for (let c = 0; c < 81; c++) if (X.candidates[c].includes(d)) {
+    const isP = pc.includes(c), isE = el.some((e) => e.cell === c);
+    const kill = isE ? 1 - seg(t, 5.2, 5.6) : 1;
+    B.candidate(c, d, { op: seg(t, 2.8, 3.2) * kill, color: isE && t > 4.6 ? k.eliminate : isP && pOn > 0.5 ? k.hint : k.accent, weight: 800, scale: 1.45, center: 0.45 });
+    if (isE) B.strikeCand(c, d, ease.out(seg(t, 4.6, 4.95)));
+  }
+  for (const c of pc) B.ring(c, pOn, k.hint);
+  for (const u of X.step.units.slice(0, 2)) B.shadeUnit(u, k.hintSoft, 0.9 * seg(t, 3.3, 3.6));
+  B.path('rect', `M${bx(a)} ${by(a)}L${bx(b2)} ${by(b2)}L${bx(d4)} ${by(d4)}L${bx(c3)} ${by(c3)}Z`, { color: k.hint, width: 6, op: 0.65, p: ease.inOut(seg(t, 3.6, 4.4)) });
+  for (const e of el) B.ring(e.cell, env(t, 4.5, 6.3, 0.2, 0.3), k.eliminate);
+  B.end();
+  const c1 = ease.out(seg(t, 2.6, 3.1)) * (1 - seg(t, 6.0, 6.3));
+  css(cap1, { opacity: c1, transform: `translateY(${(1 - c1) * 20}px)` });
+  if (portrait) css(B.svg, { transform: `translateY(${(1 - ease.out(seg(t, 2.4, 3.0))) * 60}px)` });
+  // beat 3: real screens fan out
+  const c2 = ease.out(seg(t, 6.3, 6.8)) * (1 - seg(t, 8.9, 9.2));
+  css(cap2, { opacity: c2, transform: `translateY(${(1 - c2) * 20}px)` });
+  shots.forEach((s, i) => {
+    const p = ease.out(seg(t, 6.4 + i * 0.22, 7.1 + i * 0.22));
+    const o = env(t, 6.4 + i * 0.22, 9.2, 0.3, 0.3);
+    const off = (i - 1) * (portrait ? 270 : 300);
+    css(s, { opacity: o, zIndex: i === 1 ? 3 : 1, transform: `translate(${off * p}px, ${(portrait ? 120 : 0) + (1 - p) * 120 + (i === 1 ? 0 : 50)}px) rotate(${(i - 1) * 6 * p}deg) scale(${i === 1 ? 1 : 0.86})` });
+  });
+  end(seg(t, 9.0, 12.0), t);
+});
+</script>
+</body></html>

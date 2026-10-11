@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Social header</title></head>
+<body>
+<script type="module">
+// Social cover / header. ?w=1500&h=500 (X header) or ?w=1640&h=624 and ?w=851&h=315 (Facebook page cover).
+// Key content is centred; the lower-left corner (where the profile photo sits) carries nothing important.
+import { stage, baseCSS, div, TOKENS, markSVG, wordmark, stillReady, TAGLINE, CLAIMS, Board, loadJSON, heroBoard } from '../lib/pm.js';
+const { W, H } = stage();
+const b = TOKENS.brand;
+baseCSS('light');
+document.body.style.background = `linear-gradient(160deg, ${b.inkTop}, ${b.inkBottom})`;
+const grid = div('');
+grid.style.cssText = `position:absolute;inset:0;opacity:.16;background-image:linear-gradient(${b.paper}66 2px,transparent 2px),linear-gradient(90deg,${b.paper}66 2px,transparent 2px);background-size:${H / 4.5}px ${H / 4.5}px`;
+// faint real X-Wing board bleeding off the right edge (decorative)
+const X = (await loadJSON('../../data/explainers.json'))['x-wing'];
+const B = new Board(document.body, { x: W - H * 0.42, y: H * 0.05, size: H * 1.1, theme: 'dark' });
+heroBoard(B, X, 'dark');
+B.svg.style.opacity = 0.2;
+const c = div('');
+c.style.cssText = `position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:${H * 0.08}px;color:${b.paper}`;
+const m = markSVG(H * 0.42);
+m.style.filter = 'drop-shadow(0 12px 24px rgba(5,12,28,.45))';
+c.appendChild(m);
+const t = div('', c);
+wordmark(t, { size: H * 0.2, color: b.paper, dot: b.dot });
+const tag = div('', t, TAGLINE);
+tag.style.cssText = `font-size:${H * 0.078}px;font-weight:600;margin-top:${-H * 0.01}px;white-space:nowrap`;
+const cl = div('', t, CLAIMS.join('  ·  '));
+cl.style.cssText = `font-size:${H * 0.05}px;font-weight:700;margin-top:${H * 0.03}px;color:${b.dot};white-space:pre`;
+await stillReady();
+</script>
+</body></html>

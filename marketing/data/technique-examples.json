@@ -1,0 +1,851 @@
+{
+ "full-house": {
+  "name": "Full House",
+  "level": 1,
+  "exampleIndex": 0,
+  "explanation": "Box 3 has only one empty cell left, so r1c8 must be 1, the missing digit.",
+  "patternCells": [
+   7
+  ],
+  "placements": [
+   {
+    "cell": 7,
+    "digit": 1
+   }
+  ],
+  "eliminations": [],
+  "units": [
+   "box 3"
+  ],
+  "puzzle": "......4......2..85...9..673.5.6..7...8.....2...1..3.9.415..8...82..3......9......",
+  "grid": "000000402000020985000900673050600700080000020001003090415008000820030000009000000",
+  "payoff": "In column 2, 9 can only go in r1c2, so r1c2 = 9."
+ },
+ "hidden-single": {
+  "name": "Hidden Single",
+  "level": 1,
+  "exampleIndex": 0,
+  "explanation": "In box 2, 5 can only go in r1c5, so r1c5 = 5.",
+  "patternCells": [
+   4
+  ],
+  "placements": [
+   {
+    "cell": 4,
+    "digit": 5
+   }
+  ],
+  "eliminations": [],
+  "units": [
+   "box 2"
+  ],
+  "puzzle": "..7..9......7..5...2..1.....4.8....79.....4..26...5..8.......6..1......9..25.8...",
+  "grid": "007009000000700500020010000040800007900000400260005008000000060010000009002508000",
+  "payoff": "In box 2, 8 can only go in r2c5, so r2c5 = 8."
+ },
+ "naked-single": {
+  "name": "Naked Single",
+  "level": 1,
+  "exampleIndex": 0,
+  "explanation": "Every digit except 3 already appears in the row, column or box of r1c8, so r1c8 = 3.",
+  "patternCells": [
+   7
+  ],
+  "placements": [
+   {
+    "cell": 7,
+    "digit": 3
+   }
+  ],
+  "eliminations": [],
+  "units": [],
+  "puzzle": "1...6.8......3...4.......5..7..1.59...59...2....4..6.......2..9..3........9..827.",
+  "grid": "100060800000030004000000050070010590005900420000400600000002009003000000009008270",
+  "payoff": "In column 7, 3 can only go in r7c7, so r7c7 = 3."
+ },
+ "pointing": {
+  "name": "Pointing Pair/Triple",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In box 1, 3 can only be in row 3 (r3c1 and r3c2), a pointing pair. So 3 can be removed from the rest of row 3: r3c9.",
+  "patternCells": [
+   18,
+   19
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 26,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "box 1",
+   "row 3"
+  ],
+  "puzzle": "29......51.5.23..6..7.8..4...4...5.88..25....95.8.4.6...3.6...2.2.....9..89..2.71",
+  "grid": "298000005145023086007080240004090528800250000952804060003060052020000090089002071",
+  "payoff": "r3c9 has only one candidate left, 9, so r3c9 = 9."
+ },
+ "box-line-reduction": {
+  "name": "Box/Line Reduction",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In row 3, 3 can only be in box 2 (r3c4 and r3c6). So 3 can be removed from the rest of box 2: r1c4.",
+  "patternCells": [
+   21,
+   23
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 3,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "row 3",
+   "box 2"
+  ],
+  "puzzle": "1...29...9.85.14.2..6....9..19685..7.8..34.1........5.8...1.3.94.....1..2....6...",
+  "grid": "100029600908561402026040091319685247080034916600190853800410309400000100201006004",
+  "payoff": "r1c4 has only one candidate left, 7, so r1c4 = 7."
+ },
+ "naked-pair": {
+  "name": "Naked Pair",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In box 2, r2c4 and r3c5 contain only the candidates {5,7}, a naked pair, so those digits must go in these cells. Remove 7 from r1c5.",
+  "patternCells": [
+   12,
+   22
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 4,
+    "digit": 7
+   }
+  ],
+  "units": [
+   "box 2"
+  ],
+  "puzzle": "..12....53.4.98......6.194372....53...8...7..593....216124.7......31....4.......7",
+  "grid": "901200005304098000280601943726100530148000700593000021612407300800310000430000007",
+  "payoff": null
+ },
+ "hidden-pair": {
+  "name": "Hidden Pair",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In box 2, the digits 4 and 8 can only go in r2c4 and r3c4, a hidden pair. So these cells cannot hold anything else: remove 7 from r3c4.",
+  "patternCells": [
+   12,
+   21
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 21,
+    "digit": 7
+   }
+  ],
+  "units": [
+   "box 2"
+  ],
+  "puzzle": "...61.85......2193........659..46.1..6.....7..4.58..699........6123......35.28...",
+  "grid": "020610850006002193000000026590046018060000070040580069984060032612304980735928641",
+  "payoff": null
+ },
+ "naked-triple": {
+  "name": "Naked Triple",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In row 7, r7c1, r7c6 and r7c8 contain only the candidates {4,5,6}, a naked triple, so those digits must go in these cells. Remove 5 from r7c9.",
+  "patternCells": [
+   54,
+   59,
+   61
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 62,
+    "digit": 5
+   }
+  ],
+  "units": [
+   "row 7"
+  ],
+  "puzzle": "1.......9.8..9.3..2.3...81..6..8.4.....7.3.8...71..253.2.......41.97......8......",
+  "grid": "170000009080091370293657814361080497952743186847169253029000700410970030738000900",
+  "payoff": null
+ },
+ "hidden-triple": {
+  "name": "Hidden Triple",
+  "level": 2,
+  "exampleIndex": 0,
+  "explanation": "In box 1, the digits 6, 7 and 8 can only go in r1c1, r3c1 and r3c3, a hidden triple. So these cells cannot hold anything else: remove 9 from r3c3.",
+  "patternCells": [
+   0,
+   18,
+   20
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 20,
+    "digit": 9
+   }
+  ],
+  "units": [
+   "box 1"
+  ],
+  "puzzle": ".......37...6.5.1.....1.2...8.7..4.2..5.9.7..4.6..3.8...4.5.....6.4.7...21.......",
+  "grid": "001240037002675010000310200080761452125894763476523080004152000560407020210906000",
+  "payoff": null
+ },
+ "x-wing": {
+  "name": "X-Wing",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "X-Wing on 2: in columns 3 and 6, 2 can only go in rows 3 and 5. One 2 per base line fills each of those rows, so remove 2 from r3c5.",
+  "patternCells": [
+   20,
+   23,
+   38,
+   41
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 22,
+    "digit": 2
+   }
+  ],
+  "units": [
+   "column 3",
+   "column 6",
+   "row 3",
+   "row 5"
+  ],
+  "puzzle": "..137.2.......1..9...4..6.3.3.6..18..4.....7..76..3.9.5.7..8...4..9.......8.149..",
+  "grid": "051370248304801759780400613035607180140580376876103590597238461413900827008714935",
+  "payoff": null
+ },
+ "skyscraper": {
+  "name": "Skyscraper",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "Skyscraper on 1: row 5 and row 9 each have 1 in only two cells, and r5c4 and r9c4 line up in column 4 (only one of them can be 1), so at least one of r5c1 and r9c3 is 1 (chain 1r5c1 = 1r5c4 – 1r9c4 = 1r9c3). Remove 1 from r6c3, which sees both.",
+  "patternCells": [
+   36,
+   39,
+   74,
+   75
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 47,
+    "digit": 1
+   }
+  ],
+  "units": [
+   "row 5",
+   "row 9"
+  ],
+  "puzzle": ".84.....72.57.3.8......14.....5.6..4..6...7..7..4.8.....96......7.8.26.15.....87.",
+  "grid": "084065007205743086607081405008576004046029758750408069809607540473852691560094870",
+  "payoff": "In column 3, 1 can only go in r9c3, so r9c3 = 1."
+ },
+ "two-string-kite": {
+  "name": "Two-String Kite",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "Two-string kite on 4: row 2 and column 3 each have 4 in only two cells, and r2c1 and r1c3 share box 1 (only one of them can be 4), so at least one of r2c5 and r8c3 is 4 (chain 4r2c5 = 4r2c1 – 4r1c3 = 4r8c3). Remove 4 from r8c5, which sees both.",
+  "patternCells": [
+   2,
+   9,
+   13,
+   65
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 67,
+    "digit": 4
+   }
+  ],
+  "units": [
+   "row 2",
+   "column 3"
+  ],
+  "puzzle": "......2.3.375...9....3..64...8..41...6..7..8...12..9...23..1....1...235.8.5......",
+  "grid": "000008273037506891080307645008004127060170584001285936023051060010002350805000012",
+  "payoff": "r8c5 has only one candidate left, 9, so r8c5 = 9."
+ },
+ "xy-wing": {
+  "name": "XY-Wing",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "XY-Wing: pivot r7c3 {6,7} sees r7c8 {5,6} and r8c1 {5,7}. Whether the pivot is 6 or 7, one of the pincers must be 5, so remove 5 from r8c8.",
+  "patternCells": [
+   56,
+   61,
+   63
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 70,
+    "digit": 5
+   }
+  ],
+  "units": [],
+  "puzzle": "9....8........621.4.5.1...3.54.......8.6.5.9.......64.2...8.3.9.931........3....7",
+  "grid": "921438576030006214465217983654001832382645791179823645210084309093102408040309127",
+  "payoff": "In box 9, 5 can only go in r7c8, so r7c8 = 5."
+ },
+ "xyz-wing": {
+  "name": "XYZ-Wing",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "XYZ-Wing: pivot r5c4 {4,7,8} sees r3c4 {7,8} and r6c6 {4,8}. One of these three cells must be 8, so remove 8 from r4c4, which sees all three.",
+  "patternCells": [
+   21,
+   39,
+   50
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 30,
+    "digit": 8
+   }
+  ],
+  "units": [],
+  "puzzle": ".279..4..91..4..78......3.2.5...9.27....5....17.6...3.3.1......76..8..51..2..674.",
+  "grid": "027900415913040678045000392456009027230050060170620530391070286764080951582196743",
+  "payoff": "In row 4, 8 can only go in r4c7, so r4c7 = 8."
+ },
+ "simple-coloring": {
+  "name": "Simple Colouring",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "Simple colouring on 4: colour the chain of conjugate pairs alternately; one colour holds all the 4s. r3c9 sees both a blue and an orange cell, so remove 4 from it.",
+  "patternCells": [
+   13,
+   21,
+   67,
+   71
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 26,
+    "digit": 4
+   }
+  ],
+  "units": [],
+  "puzzle": "3..27..6....1....3.18.6.....83.........924.........69.....8.75.1....2....3..51..6",
+  "grid": "300278160000100083018060000983010000000924318001830690000080751100002830830051006",
+  "payoff": null
+ },
+ "swordfish": {
+  "name": "Swordfish",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "Swordfish on 3: in columns 1, 7 and 9, 3 can only go in rows 1, 6 and 9. One 3 per base line fills each of those rows, so remove 3 from r1c2 and r9c8.",
+  "patternCells": [
+   0,
+   6,
+   51,
+   53,
+   72,
+   80
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 1,
+    "digit": 3
+   },
+   {
+    "cell": 79,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "column 1",
+   "column 7",
+   "column 9",
+   "row 1",
+   "row 6",
+   "row 9"
+  ],
+  "puzzle": ".....6.8.6...42..757.......9.....1.41...345...27....6.79..........4.3..6....85...",
+  "grid": "000006080600042907570008602900867124100234579427009060790621000800403006000085000",
+  "payoff": null
+ },
+ "naked-quad": {
+  "name": "Naked Quad",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "In box 2, r1c5, r1c6, r2c5 and r3c5 contain only the candidates {3,4,6,8}, a naked quad, so those digits must go in these cells. Remove 8 from r2c6.",
+  "patternCells": [
+   4,
+   5,
+   13,
+   22
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 14,
+    "digit": 8
+   }
+  ],
+  "units": [
+   "box 2"
+  ],
+  "puzzle": "6.15..9..4......31.3......8...67.5..8....5.....32.4.7..1..2....7..89..4..9.......",
+  "grid": "601500920405000031030000058142670503800005000003204070010020000706890040090050000",
+  "payoff": null
+ },
+ "hidden-quad": {
+  "name": "Hidden Quad",
+  "level": 3,
+  "exampleIndex": 0,
+  "explanation": "In row 6, the digits 2, 5, 6 and 8 can only go in r6c2, r6c7, r6c8 and r6c9, a hidden quad. So these cells cannot hold anything else: remove 1 from r6c9.",
+  "patternCells": [
+   46,
+   51,
+   52,
+   53
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 53,
+    "digit": 1
+   }
+  ],
+  "units": [
+   "row 6"
+  ],
+  "puzzle": "1.......2.7...2.6.5....934.9.5....3.2..586..9.........61..2......21.4......8....7",
+  "grid": "100608002070402060526719348905240030230586409000000000610020004052104603000865007",
+  "payoff": null
+ },
+ "turbot-fish": {
+  "name": "Turbot Fish",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Turbot fish on 3: r7c1 and r7c8 are the only places for 3 in row 7, r1c8 and r3c9 are the only places in box 3, and r7c8 sees r1c8, so at least one of r7c1 and r3c9 is 3 (chain 3r7c1 = 3r7c8 – 3r1c8 = 3r3c9). Remove 3 from r3c1, which sees both.",
+  "patternCells": [
+   7,
+   26,
+   54,
+   61
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 18,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "row 7",
+   "box 3"
+  ],
+  "puzzle": "..5.....8.....8421..84.6.9.....7.34...3...7...46.2.....6.2.19..1849.....9.....8..",
+  "grid": "405092608609008421008406590001070340003000700746020100067281904184900200902000810",
+  "payoff": "In column 1, 3 can only go in r7c1, so r7c1 = 3."
+ },
+ "w-wing": {
+  "name": "W-Wing",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "W-Wing: r4c4 and r5c2 both hold {2,3}, and 3 in r6c5–r6c2 is a conjugate pair linking them. They cannot both be 3, so one of them is 2: remove 2 from r5c6.",
+  "patternCells": [
+   30,
+   37,
+   46,
+   49
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 41,
+    "digit": 2
+   }
+  ],
+  "units": [
+   "row 6"
+  ],
+  "puzzle": "......76.....67.32..1..985.51...86.............95...87.758..3..98.71.....42......",
+  "grid": "293485761050167932761009854510008600000600510609501087175800396986713005342956178",
+  "payoff": "In row 5, 2 can only go in r5c2, so r5c2 = 2."
+ },
+ "unique-rectangle-1": {
+  "name": "Unique Rectangle Type 1",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Unique rectangle: r3c4, r3c6 and r8c6 can only be {3,9}. If r8c4 were also 3 or 9, the four corners could swap 3 and 9 and the puzzle would have two solutions, so remove {3,9} from r8c4.",
+  "patternCells": [
+   21,
+   23,
+   66,
+   68
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 66,
+    "digit": 3
+   },
+   {
+    "cell": 66,
+    "digit": 9
+   }
+  ],
+  "units": [],
+  "puzzle": "6....4..73...2.9.1.8....6....4.87.65.5.49.8......3......2..8.....1....7..3.......",
+  "grid": "629814537347625981185070624004087365753496812000530749072008000001000070030700000",
+  "payoff": "r8c4 has only one candidate left, 2, so r8c4 = 2."
+ },
+ "unique-rectangle-2": {
+  "name": "Unique Rectangle Type 2",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Unique rectangle type 2: r5c5 and r7c5 are exactly {5,6} and r5c6 and r7c6 are {5,6,8}. To avoid two solutions one of r5c6 and r7c6 must be 8, so remove 8 from r4c6, which sees both.",
+  "patternCells": [
+   40,
+   41,
+   58,
+   59
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 32,
+    "digit": 8
+   }
+  ],
+  "units": [],
+  "puzzle": "..5.93...3...8...6....72...5.3.......7.....1..6..397....1...47..2..1..85854...6..",
+  "grid": "205693047307080026000072000503740260070000010060039750031000472720010085854027601",
+  "payoff": "r4c6 has only one candidate left, 1, so r4c6 = 1."
+ },
+ "unique-rectangle-4": {
+  "name": "Unique Rectangle Type 4",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Unique rectangle type 4: r6c1 and r6c3 are exactly {4,5}, and in row 7 5 can only go in r7c1 and r7c3. One of them is 5, so neither can be 4 without creating two solutions: remove 4 from r7c1 and r7c3.",
+  "patternCells": [
+   45,
+   47,
+   54,
+   56
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 54,
+    "digit": 4
+   },
+   {
+    "cell": 56,
+    "digit": 4
+   }
+  ],
+  "units": [
+   "row 7"
+  ],
+  "puzzle": "1.......4......96..682.3...2..4..89..1.6.7....3....1........6...2.........3.912..",
+  "grid": "152000384347158962968243751276415893819637425030000176090000608020000509683591247",
+  "payoff": "In row 7, 4 can only go in r7c6, so r7c6 = 4."
+ },
+ "bug-plus-one": {
+  "name": "BUG+1",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "BUG+1: every empty cell has two candidates except r7c1, and 6 appears three times in its row, column and box. Without 6 there, the grid would be a deadly pattern with no unique solution, so r7c1 = 6.",
+  "patternCells": [
+   54
+  ],
+  "placements": [
+   {
+    "cell": 54,
+    "digit": 6
+   }
+  ],
+  "eliminations": [],
+  "units": [
+   "row 7",
+   "column 1",
+   "box 7"
+  ],
+  "puzzle": "..3.9.2...4.....188..43..9.96.1......1.76....75....8......5.......3....5.....2.3.",
+  "grid": "173598246549276318826431597962185473318764952754923861030050000000340005005012730",
+  "payoff": "In box 7, 2 can only go in r8c1, so r8c1 = 2."
+ },
+ "finned-x-wing": {
+  "name": "Finned X-Wing",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Finned X-Wing on 4: in columns 3 and 7, 4 is limited to rows 5 and 7 except for the fin at r9c3 in box 7. Either the fish holds or a fin is 4; both remove 4 from r7c2, which is in a cover row and sees the fin.",
+  "patternCells": [
+   38,
+   42,
+   56,
+   60,
+   74
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 55,
+    "digit": 4
+   }
+  ],
+  "units": [
+   "column 3",
+   "column 7",
+   "row 5",
+   "row 7",
+   "box 7"
+  ],
+  "puzzle": "..6..4.....5.31.6..8.96...4.67...2..9.......1..2...63.6...59.7..1.34.8.....6..9..",
+  "grid": "006004000005031760081960004067003200900006001002090637600059070019340806000600900",
+  "payoff": null
+ },
+ "jellyfish": {
+  "name": "Jellyfish",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Jellyfish on 3: in rows 1, 2, 5 and 8, 3 can only go in columns 2, 3, 8 and 9. One 3 per base line fills each of those columns, so remove 3 from r4c8, r6c2 and r9c3.",
+  "patternCells": [
+   2,
+   8,
+   10,
+   17,
+   37,
+   43,
+   65,
+   70
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 34,
+    "digit": 3
+   },
+   {
+    "cell": 46,
+    "digit": 3
+   },
+   {
+    "cell": 74,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "row 1",
+   "row 2",
+   "row 5",
+   "row 8",
+   "column 2",
+   "column 3",
+   "column 8",
+   "column 9"
+  ],
+  "puzzle": ".8.17....2....4.....6.3...456......81.46.57........4..91...........4.8.5......69.",
+  "grid": "480170500201004900706030004560490008104685709000010456910000040600941805040000691",
+  "payoff": null
+ },
+ "finned-swordfish": {
+  "name": "Finned Swordfish",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Sashimi Swordfish on 3: in columns 3, 6 and 8, 3 is limited to rows 2, 5 and 8 except for the fin at r1c8 in box 3. Either the fish holds or a fin is 3; both remove 3 from r2c9, which is in a cover row and sees the fin.",
+  "patternCells": [
+   7,
+   14,
+   38,
+   43,
+   65,
+   68
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 17,
+    "digit": 3
+   }
+  ],
+  "units": [
+   "column 3",
+   "column 6",
+   "column 8",
+   "row 2",
+   "row 5",
+   "row 8",
+   "box 3"
+  ],
+  "puzzle": "..5.679....2...........9485.9.31.2......4.7...61.......7...5...4...9..2.......39.",
+  "grid": "005067902902000670607009485794318256000046700061002840079005160400090520000000390",
+  "payoff": "In box 3, 3 can only go in r1c8, so r1c8 = 3."
+ },
+ "x-chain": {
+  "name": "X-Chain",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "X-Chain on 6: 6r1c5 = 6r7c5 – 6r9c6 = 6r9c1 – 6r3c1 = 6r3c7 (\"=\" means at least one is true, \"–\" means at most one is true). So r1c5 is 6 or r3c7 is 6; remove 6 from r1c7, since it conflicts with both ends.",
+  "patternCells": [
+   4,
+   18,
+   24,
+   58,
+   72,
+   77
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 6,
+    "digit": 6
+   }
+  ],
+  "units": [],
+  "puzzle": "...1.3.7.9...4............5..4.2..3..2.....61.6...89.4.9....1..3.5.8.2....2.9...7",
+  "grid": "200103079900840012001070005004020038829030061063018924090000103305080296002390007",
+  "payoff": "r1c7 has only one candidate left, 4, so r1c7 = 4."
+ },
+ "xy-chain": {
+  "name": "XY-Chain",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "XY-Chain: 8r3c3 = 9r3c3 – 9r5c3 = 4r5c3 – 4r5c9 = 7r5c9 – 7r8c9 = 8r8c9 (\"=\" means at least one is true, \"–\" means at most one is true). So r3c3 is 8 or r8c9 is 8; remove 8 from r3c9, since it conflicts with both ends.",
+  "patternCells": [
+   20,
+   38,
+   44,
+   71
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 26,
+    "digit": 8
+   }
+  ],
+  "units": [],
+  "puzzle": "75.24......2..8...1...374.........92...3.2.6..8.76....9.7.......4.9..6....6...3..",
+  "grid": "750246901402198000100537420600854092500312860280769000917683200345921600826475319",
+  "payoff": "In box 3, 8 can only go in r1c8, so r1c8 = 8."
+ },
+ "aic": {
+  "name": "Alternating Inference Chain",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "Alternating inference chain: 4r5c6 = 2r5c6 – 2r5c8 = 9r5c8 – 9r5c5 = 9r6c5 (\"=\" means at least one is true, \"–\" means at most one is true). So r5c6 is 4 or r6c5 is 9; remove 4 from r6c5, since it conflicts with both ends.",
+  "patternCells": [
+   40,
+   41,
+   43,
+   49
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 49,
+    "digit": 4
+   }
+  ],
+  "units": [],
+  "puzzle": "..24...69....8.2....9..7.1...4.1.6...5......1.....387.5..9.6...8...............4.",
+  "grid": "082400069005089230009007018004010600058000001000003870500906080800000000000000040",
+  "payoff": "In row 6, 4 can only go in r6c9, so r6c9 = 4."
+ },
+ "als-xz": {
+  "name": "ALS-XZ",
+  "level": 4,
+  "exampleIndex": 0,
+  "explanation": "ALS-XZ: r7c1 {5,6} in row 7 and r7c8, r7c9 and r8c7 {2,4,5,6} in box 9 are almost locked sets that cannot both contain 5 (every 5 in one sees every 5 in the other), so one of them is locked without 5 and must contain 6. Remove 6 from r7c5, which sees all of those cells.",
+  "patternCells": [
+   54,
+   61,
+   62,
+   69
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 58,
+    "digit": 6
+   }
+  ],
+  "units": [
+   "row 7",
+   "box 9"
+  ],
+  "puzzle": "25.8.....8.19.......9....7....6195.......298..6............83..1...3...74.2...1..",
+  "grid": "250800009871900000049000870728619500010002986960080700097108300180030097432090108",
+  "payoff": null
+ },
+ "sue-de-coq": {
+  "name": "Sue de Coq",
+  "level": 5,
+  "exampleIndex": 0,
+  "explanation": "Sue de Coq: r8c4 and r8c6 (where box 8 meets row 8) hold {1,5,7,8,9}; together with r8c2 {1,9} in the row and r7c5 and r9c4 {5,7,8} in the box, 5 cells hold exactly 5 digits. So {1,9} stay in row 8 and {5,7,8} stay in box 8: remove 5 and 8 from r7c6.",
+  "patternCells": [
+   58,
+   64,
+   66,
+   68,
+   75
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 59,
+    "digit": 5
+   },
+   {
+    "cell": 59,
+    "digit": 8
+   }
+  ],
+  "units": [
+   "row 8",
+   "box 8"
+  ],
+  "puzzle": "45.61.3..78..9...2.....7......9...35..1...6..93...6......2.....3...4..26..7.63.41",
+  "grid": "450610300780090002000007000000900035001000600930006000000200003300040026007063041",
+  "payoff": null
+ },
+ "forcing-chain": {
+  "name": "Forcing Chain",
+  "level": 5,
+  "exampleIndex": 0,
+  "explanation": "Forcing chain (contradiction): if r5c9 were 1, singles would follow (r5c9 = 1 → r7c3 = 1), and then 1 would have no place left in box 9. So r5c9 cannot be 1.",
+  "patternCells": [
+   44,
+   56
+  ],
+  "placements": [],
+  "eliminations": [
+   {
+    "cell": 44,
+    "digit": 1
+   }
+  ],
+  "units": [],
+  "puzzle": "3.6....72....8.3...9...1.....28.....7...2.59...4.15...5...........1.8..4..92..75.",
+  "grid": "306500072005082309290001005052800000700020590004015000500000000600158904009200750",
+  "payoff": "r5c9 has only one candidate left, 8, so r5c9 = 8."
+ }
+}

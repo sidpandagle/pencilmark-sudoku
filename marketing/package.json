@@ -1,0 +1,20 @@
+{
+  "name": "pencilmark-marketing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local, reproducible marketing asset pipeline for Pencilmark Sudoku (videos, store screenshots, social images). Nothing here is published.",
+  "type": "module",
+  "scripts": {
+    "data": "bun scripts/export-data.ts",
+    "capture": "node scripts/capture-app.mjs",
+    "render:videos": "node scripts/render-video.mjs all",
+    "render:stills": "node scripts/render-stills.mjs all",
+    "render:all": "npm run data && npm run capture && npm run render:videos && npm run render:stills && npm run verify",
+    "verify": "node scripts/verify.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "5.3.0",
+    "playwright-core": "1.64.0"
+  }
+}

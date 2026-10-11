@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Medium: diamond + 2 candidate dots. -->
+  <path d="M12 2.2L21.8 12 12 21.8 2.2 12Z" fill="#DCE6F6" stroke="#2F5DA8" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="9.8" cy="12" r="1.6" fill="#2F5DA8"/>
+  <circle cx="14.2" cy="12" r="1.6" fill="#2F5DA8"/>
+</svg>

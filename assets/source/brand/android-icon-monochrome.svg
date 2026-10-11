@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    Android 13+ themed (monochrome) icon. Only alpha matters: the launcher tints it.
+    Same placement as the adaptive foreground. Pencil pieces are separated by small gaps
+    so the silhouette still reads as a pencil.
+  -->
+  <g transform="translate(282 282) scale(0.766667)" fill="#FFFFFF">
+    <g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+      <rect x="14" y="14" width="572" height="572" rx="56" stroke-width="28"/>
+      <path d="M200 14V586M400 14V586M14 200H586M14 400H586" stroke-width="16"/>
+    </g>
+    <circle cx="66" cy="66" r="17"/>
+    <circle cx="118" cy="66" r="17"/>
+    <circle cx="66" cy="118" r="17"/>
+    <g transform="translate(300 300) rotate(-45)">
+      <rect x="-90" y="-24" width="20" height="48" rx="6"/>
+      <rect x="-62" y="-24" width="92" height="48"/>
+      <path d="M38 -24L68 -10L68 10L38 24Z"/>
+      <path d="M76 -6.5L90 0L76 6.5Z"/>
+    </g>
+  </g>
+</svg>

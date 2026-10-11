@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Expert: solid ink star + 4 paper dots. -->
+  <path d="M12 2.1L14.94 8.56 21.99 9.36 16.76 14.15 18.17 21.09 12 17.6 5.83 21.09 7.24 14.15 2.01 9.36 9.06 8.56Z" fill="#1E2733" stroke="#1E2733" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="10.4" cy="11.4" r="1.1" fill="#FFFDF8"/>
+  <circle cx="13.6" cy="11.4" r="1.1" fill="#FFFDF8"/>
+  <circle cx="10.4" cy="14.6" r="1.1" fill="#FFFDF8"/>
+  <circle cx="13.6" cy="14.6" r="1.1" fill="#FFFDF8"/>
+</svg>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Technique explainer</title>
+<style>
+  .title{position:absolute;left:72px;top:252px;font-weight:900;font-size:96px;letter-spacing:-0.025em;line-height:1}
+  .capbox{position:absolute;left:72px;top:392px;width:868px;height:190px;font-size:47px;font-weight:600;line-height:1.24}
+  .steps{position:absolute;left:135px;width:810px;top:1474px;display:flex;justify-content:space-between;font-size:30px;font-weight:700}
+  .steps span{display:flex;align-items:center;gap:10px}
+  .steps i{display:inline-block;width:16px;height:16px;border-radius:50%}
+  .take b{color:#B27A18}
+</style></head>
+<body>
+<script type="module">
+// Technique explainer short, 1080x1920. ?tech=hidden-single | naked-pair | x-wing
+// Content comes from data/explainers.json, exported from the app engine and validated against the
+// unique solution (scripts/export-data.ts). Captions are shortened engine explanations, logically identical.
+import { stage, baseCSS, register, loadJSON, params, Board, div, css, seg, ease, env, pulse, TOKENS, captions,
+  endCard, unitCells, cellName, rowOf, colOf, boxOf, bx, by } from '../lib/pm.js';
+
+const { W, H } = stage();
+baseCSS('light');
+const k = TOKENS.light;
+const tech = params.get('tech') || 'x-wing';
+const all = await loadJSON('../../data/explainers.json');
+const X = all[tech];
+if (!X) throw new Error('unknown technique ' + tech);
+const LEVELNAMES = { 1: 'First steps', 2: 'Beginner', 3: 'Intermediate', 4: 'Advanced', 5: 'Expert' };
+
+div('paperGrid').style.opacity = 0.35;
+const chip = div('chip', document.body, `<span style="width:14px;height:14px;border-radius:3px;background:${k.accent};display:inline-block"></span>Level ${X.level} · ${LEVELNAMES[X.level]}`);
+chip.style.cssText += ';left:72px;top:176px;font-size:30px';
+const title = div('title', document.body, X.name);
+const capbox = div('capbox');
+const B = new Board(document.body, { x: 135, y: 650, size: 810, labels: true });
+const stepsEl = div('steps', document.body, ['Look', 'Pattern', 'Deduce', 'Result'].map((s) => `<span><i></i>${s}</span>`).join(''));
+const stepSpans = [...stepsEl.children];
+
+const step = X.step;
+const names = (cells) => {
+  const n = cells.map(cellName);
+  return n.length <= 1 ? n.join('') : n.slice(0, -1).join(', ') + ' and ' + n[n.length - 1];
+};
+const unitLabel = (u) => (u < 9 ? `row ${u + 1}` : u < 18 ? `column ${u - 8}` : `box ${u - 17}`);
+const peersOf = (c) => { const out = []; for (let i = 0; i < 81; i++) if (i !== c && (rowOf(i) === rowOf(c) || colOf(i) === colOf(c) || boxOf(i) === boxOf(c))) out.push(i); return out; };
+
+// ---------- per-technique script ----------
+let S; // { dur, caps: [{a,b,text}], beats: {...}, showCands, takeaway }
+if (tech === 'hidden-single') {
+  const { cell: target, digit: d } = step.placements[0];
+  const u = step.units[0];
+  const empties = unitCells(u).filter((c) => !X.grid[c]);
+  const groups = [];
+  for (const b of X.crossHatch) {
+    let g = groups.find((g) => g.by === b.by);
+    if (!g) groups.push((g = { by: b.by, line: b.line, cells: [] }));
+    g.cells.push(b.cell);
+  }
+  const lineName = (g) => (g.line === 'row' ? `row ${rowOf(g.by) + 1}` : g.line === 'col' ? `column ${colOf(g.by) + 1}` : `box ${boxOf(g.by) + 1}`);
+  let t0 = 8.0;
+  const groupBeats = groups.map((g) => { const a = t0; t0 += 4.2; return { ...g, a, b: t0 }; });
+  const tPlace = t0 + 1.2;
+  S = {
+    dur: t0 + 10.5,
+    caps: [
+      { a: 0.7, b: 4.3, text: `${unitLabel(u)[0].toUpperCase() + unitLabel(u).slice(1)} needs a ${d}. Only one cell can take it. Can you spot it?` },
+      { a: 4.3, b: 8.0, text: `${empties.length} empty cells in ${unitLabel(u)} could still hold the ${d}.` },
+      ...groupBeats.map((g) => ({ a: g.a, b: g.b, text: `The ${d} in ${lineName(g)} rules out ${names(g.cells)}.` })),
+      { a: t0, b: t0 + 3.6, text: `In ${unitLabel(u)}, ${d} can only go in ${cellName(target)}, so ${cellName(target)} = ${d}.` },
+      { a: t0 + 3.6, b: t0 + 6.4, text: `<span class="take"><b>Takeaway:</b> pick a digit and a box. Cross out every cell it can't use. One left? Place it.</span>` },
+    ],
+    phase: (t) => (t < 4.3 ? -1 : t < 8 ? 0 : t < t0 ? 1 : t < tPlace + 0.5 ? 2 : 3),
+    end: t0 + 6.0,
+    draw(t) {
+      const uA = env(t, 4.3, t0 + 3.6, 0.5, 0.6);
+      B.shadeUnit(u, k.hintSoft, uA);
+      for (const c of empties) B.ring(c, 0.55 * env(t, 4.6, 8.2, 0.4, 0.4), k.hint);
+      for (const g of groupBeats) {
+        const on = env(t, g.a, t0 + 3.6, 0.3, 0.6);
+        B.ring(g.by, on * (0.7 + 0.3 * pulse(t - g.a, 1.4)), k.accent);
+        // ray from the blocking digit across the unit
+        const far = g.cells.reduce((f, c) => (Math.abs(colOf(c) - colOf(g.by)) + Math.abs(rowOf(c) - rowOf(g.by)) > Math.abs(colOf(f) - colOf(g.by)) + Math.abs(rowOf(f) - rowOf(g.by)) ? c : f), g.cells[0]);
+        const p = ease.inOut(seg(t, g.a + 0.4, g.a + 1.4));
+        B.path('ray' + g.by, `M${bx(g.by)} ${by(g.by)}L${bx(far) + (bx(far) < bx(g.by) ? -38 : bx(far) > bx(g.by) ? 38 : 0)} ${by(far) + (by(far) < by(g.by) ? -38 : by(far) > by(g.by) ? 38 : 0)}`, { color: k.accent, width: 7, p, op: 0.5 * on });
+        g.cells.forEach((c, i) => B.cross(c, ease.out(seg(t, g.a + 1.0 + i * 0.25, g.a + 1.3 + i * 0.25)) * env(t, g.a, t0 + 3.6, 0.01, 0.6)));
+        if (g.by !== undefined) B.s.dig[g.by] && (B.s.dig[g.by].color = on > 0.5 ? k.accent : B.s.dig[g.by].color);
+      }
+      B.ring(target, env(t, t0, S.end, 0.3, 0.4) * (0.75 + 0.25 * pulse(t, 1.1)), k.hint);
+      placeAt(target, d, tPlace, t);
+    },
+  };
+} else if (tech === 'naked-pair') {
+  const u = step.units[0];
+  const pc = step.patternCells;
+  const pair = [...new Set(step.candidates.filter((c) => c.role === 'pattern').map((c) => c.digit))].sort();
+  const el = step.eliminations;
+  const others = unitCells(u).filter((c) => !X.grid[c] && !pc.includes(c));
+  const pay = X.payoff;
+  const pu = pay.units?.[0];
+  const pl = pay.placements[0];
+  S = {
+    dur: 31,
+    showCands: true,
+    caps: [
+      { a: 0.7, b: 4.4, text: 'Two cells, two digits, and a guaranteed elimination.' },
+      { a: 4.4, b: 8.2, text: `Look at ${unitLabel(u)}.` },
+      { a: 8.2, b: 12.6, text: `${names(pc)} can only be ${pair.join(' or ')}: a naked pair.` },
+      { a: 12.6, b: 16.8, text: `Those two cells must take the ${pair.join(' and the ')}, so no other cell in ${unitLabel(u)} can be ${pair.join(' or ')}.` },
+      { a: 16.8, b: 20.5, text: `Remove ${[...new Set(el.map((e) => e.digit))].map((dg) => `${dg} from ${names(el.filter((e) => e.digit === dg).map((e) => e.cell))}`).join(', and ')}.` },
+      { a: 20.5, b: 24.5, text: pay.technique === 'hidden-single'
+          ? `Now ${unitLabel(pu)} has only one place for ${pl.digit}: ${cellName(pl.cell)}.`
+          : `Now ${cellName(pl.cell)} has only one candidate left: ${pl.digit}.` },
+      { a: 24.5, b: 27.2, text: '<span class="take"><b>Takeaway:</b> two cells with the same two candidates? Clear those digits from the rest of the unit.</span>' },
+    ],
+    phase: (t) => (t < 4.4 ? -1 : t < 8.2 ? 0 : t < 12.6 ? 1 : t < 20.5 ? 2 : 3),
+    end: 26.8,
+    draw(t) {
+      const focus = env(t, 4.4, 20.5, 0.5, 0.5);
+      B.shadeUnit(u, k.hintSoft, 0.85 * focus);
+      dimOutside(unitCells(u), focus * 0.5);
+      const pOn = env(t, 8.4, 20.5, 0.35, 0.5);
+      for (const c of pc) {
+        B.ring(c, pOn, k.hint);
+        if (pOn > 0.02) for (const d of pair) cand(c, d, { color: k.hint, weight: 800, scale: 1 + 0.12 * pOn });
+      }
+      const eOn = env(t, 13.4, 20.5, 0.3, 0.4);
+      for (const c of others) for (const d of pair) if (hasCand(c, d) && eOn > 0.02) { cand(c, d, { color: k.eliminate, weight: 800 }); B.ring(c, eOn, k.eliminate); }
+      for (const e of el) strike(e.cell, e.digit, 17.3, t);
+      // payoff
+      const pf = env(t, 20.5, 26.6, 0.5, 0.5);
+      if (pay.technique === 'hidden-single') { B.shadeUnit(pu, k.hintSoft, 0.85 * pf); dimOutside(unitCells(pu), pf * 0.5); if (pf > 0.02) for (const c of unitCells(pu)) if (hasCand(c, pl.digit)) cand(c, pl.digit, { color: k.hint, weight: 800 }); }
+      B.ring(pl.cell, pf, k.hint);
+      placeAt(pl.cell, pl.digit, 22.6, t);
+    },
+  };
+} else {
+  // x-wing
+  const d = step.candidates[0].digit;
+  const pc = step.patternCells; // [r4c3, r4c6, r8c3, r8c6] sorted by cell index
+  const [baseA, baseB, coverA, coverB] = step.units; // columns then rows (from the engine)
+  const el = step.eliminations;
+  const pay = X.payoff;
+  const pl = pay.placements[0];
+  const [a, b2, c3, d4] = pc; // top-left, top-right, bottom-left, bottom-right
+  const baseKind = baseA >= 9 && baseA < 18 ? 'columns' : 'rows';
+  const coverKind = baseKind === 'columns' ? 'rows' : 'columns';
+  const num = (u) => (u < 9 ? u + 1 : u < 18 ? u - 8 : u - 17);
+  S = {
+    dur: 35,
+    showCands: true,
+    caps: [
+      { a: 0.7, b: 4.4, text: `An X-Wing: four cells, one digit, one safe elimination.` },
+      { a: 4.4, b: 8.0, text: `Focus on the ${d}s.` },
+      { a: 8.0, b: 12.5, text: `In ${baseKind} ${num(baseA)} and ${num(baseB)}, ${d} can only go in ${coverKind} ${num(coverA)} and ${num(coverB)}.` },
+      { a: 12.5, b: 15.0, text: `Each ${baseKind.slice(0, -1)} needs one ${d}. If ${cellName(a)} is ${d}, then ${cellName(d4)} is ${d}…` },
+      { a: 15.0, b: 17.6, text: `…otherwise ${cellName(c3)} and ${cellName(b2)} are.` },
+      { a: 17.6, b: 21.6, text: `Either way, ${coverKind} ${num(coverA)} and ${num(coverB)} each get their ${d} from these two ${baseKind}.` },
+      { a: 21.6, b: 25.0, text: `So remove ${d} from ${names(el.map((e) => e.cell))}.` },
+      { a: 25.0, b: 28.6, text: `${cellName(pl.cell)} has only one candidate left: ${pl.digit}.` },
+      { a: 28.6, b: 31.2, text: `<span class="take"><b>Takeaway:</b> one digit, two lines, the same two spots? Clear it from the crossing lines.</span>` },
+    ],
+    phase: (t) => (t < 4.4 ? -1 : t < 8 ? 0 : t < 17.6 ? 1 : t < 25 ? 2 : 3),
+    end: 30.8,
+    draw(t) {
+      const focus = env(t, 4.4, 25.2, 0.6, 0.6);
+      // digit filter: other candidates fade, the focus digit gets accent
+      for (let c = 0; c < 81; c++) for (let dd = 1; dd <= 9; dd++) {
+        if (!hasCand(c, dd)) continue;
+        if (dd === d) { if (focus > 0.02) cand(c, d, { color: focus > 0.5 ? k.accent : undefined, weight: 800, scale: 1 + 0.45 * ease.inOut(focus), center: 0.45 * ease.inOut(focus) }); }
+        else mul(c, dd, 1 - focus * 0.85);
+      }
+      const baseOn = env(t, 8.0, 21.6, 0.5, 0.5);
+      B.shadeUnit(baseA, k.hintSoft, 0.9 * baseOn);
+      B.shadeUnit(baseB, k.hintSoft, 0.9 * baseOn);
+      const pOn = env(t, 8.6, 25, 0.35, 0.5);
+      for (const c of pc) { B.ring(c, pOn, k.hint); if (pOn > 0.02) cand(c, d, { color: pOn > 0.5 ? k.hint : k.accent }); }
+      for (const e of el) B.ring(e.cell, env(t, 21.6, 25, 0.3, 0.4), k.eliminate);
+      const diag = (k1, p1, p2, key, on) => B.path(key, `M${bx(p1)} ${by(p1)}L${bx(p2)} ${by(p2)}`, { color: k.success, width: 10, p: ease.inOut(seg(t, k1, k1 + 0.9)), op: on });
+      diag(12.8, a, d4, 'diagA', env(t, 12.6, 17.6, 0.2, 0.4));
+      diag(15.2, c3, b2, 'diagB', env(t, 15.0, 17.6, 0.2, 0.4));
+      const coverOn = env(t, 17.6, 25.0, 0.5, 0.5);
+      B.shadeUnit(coverA, k.hintSoft, 0.9 * coverOn);
+      B.shadeUnit(coverB, k.hintSoft, 0.9 * coverOn);
+      B.path('rect', `M${bx(a)} ${by(a)}L${bx(b2)} ${by(b2)}L${bx(d4)} ${by(d4)}L${bx(c3)} ${by(c3)}Z`, { color: k.hint, width: 6, p: ease.inOut(seg(t, 17.8, 19.2)), op: 0.65 * env(t, 17.6, 25, 0.1, 0.5) });
+      for (const e of el) strike(e.cell, e.digit, 22.1, t);
+      const pf = env(t, 25.0, 30.6, 0.4, 0.5);
+      B.ring(pl.cell, pf, k.hint);
+      placeAt(pl.cell, pl.digit, 26.9, t);
+    },
+  };
+}
+
+// ---------- board state helpers (candidates, strikes, placements) ----------
+const cands = X.candidates.map((ds) => new Set(ds));
+const hasCand = (c, d) => cands[c].has(d);
+let frameMods; // per-frame candidate overrides
+function cand(c, d, o) { const m = (frameMods[c * 9 + d - 1] ||= {}); for (const kk in o) if (o[kk] !== undefined) m[kk] = o[kk]; }
+function mul(c, d, f) { const m = (frameMods[c * 9 + d - 1] ||= {}); m.mul = (m.mul ?? 1) * f; }
+function dimOutside(cells, a) { const set = new Set(cells); for (let c = 0; c < 81; c++) if (!set.has(c)) for (const d of cands[c]) mul(c, d, 1 - a); }
+const strikes = []; // {c,d,ts}
+function strike(c, d, ts, t) { strikes.push({ c, d, ts }); }
+const places = []; // {c,d,ts}
+function placeAt(c, d, ts, t) { places.push({ c, d, ts }); }
+
+const order = [...Array(81).keys()].sort((p, q) => (rowOf(p) + colOf(p)) - (rowOf(q) + colOf(q)) || p - q);
+const rank = new Array(81); order.forEach((c, i) => (rank[c] = i));
+const capRender = captions(capbox, S.caps);
+const end = endCard(W, H);
+
+register(S.dur, (t) => {
+  frameMods = {}; strikes.length = 0; places.length = 0;
+  B.begin();
+  // intro
+  const intro = ease.out(seg(t, 0, 0.6));
+  css(title, { opacity: intro, transform: `translateY(${(1 - intro) * 30}px)` });
+  css(chip, { opacity: intro });
+  B.lines(ease.inOut(seg(t, 0.15, 1.1)), ease.inOut(seg(t, 0.05, 1.0)));
+  B.s.labelsOp = ease.out(seg(t, 0.8, 1.4));
+  for (let c = 0; c < 81; c++) {
+    if (!X.grid[c]) continue;
+    const p = seg(t, 0.55 + rank[c] * 0.011, 0.8 + rank[c] * 0.011);
+    B.digit(c, X.grid[c], { op: p, scale: 0.7 + 0.3 * ease.back(p), color: X.givens[c] ? k.ink : k.accent, weight: X.givens[c] ? 600 : 500 });
+  }
+  S.draw(t);
+  // candidates (with per-frame modifications), strikes, placements
+  const candOn = S.showCands ? ease.out(seg(t, 1.3, 2.3)) : 0;
+  const placed = places.filter((p) => t >= p.ts);
+  for (let c = 0; c < 81; c++) {
+    if (X.grid[c]) continue;
+    for (const d of cands[c]) {
+      const m = frameMods[c * 9 + d - 1] || {};
+      let op = (S.showCands ? candOn : (m.color ? 1 : 0)) * (m.mul ?? 1);
+      const sk = strikes.find((s) => s.c === c && s.d === d);
+      if (sk) { B.strikeCand(c, d, ease.out(seg(t, sk.ts, sk.ts + 0.4))); if (t > sk.ts) m.color = k.eliminate; op *= 1 - seg(t, sk.ts + 1.0, sk.ts + 1.6); }
+      for (const p of placed) {
+        if (p.c === c) op *= 1 - seg(t, p.ts, p.ts + 0.15);
+        else if (p.d === d && (rowOf(p.c) === rowOf(c) || colOf(p.c) === colOf(c) || boxOf(p.c) === boxOf(c))) op *= 1 - seg(t, p.ts + 0.3, p.ts + 0.8);
+      }
+      if (op > 0.001) B.candidate(c, d, { op, color: m.color || k.inkMuted, weight: m.weight || 600, scale: m.scale || 1, center: m.center || 0 });
+    }
+  }
+  for (const p of places) {
+    const q = seg(t, p.ts, p.ts + 0.45);
+    if (q <= 0) continue;
+    B.digit(p.c, p.d, { op: Math.min(1, q * 3), scale: 1.7 - 0.7 * ease.back(q), color: k.accent, weight: 600 });
+    B.shade(p.c, k.success, 0.3 * (1 - seg(t, p.ts + 0.2, p.ts + 1.4)) + 0.1);
+  }
+  B.end();
+  capRender(t);
+  // steps indicator
+  const ph = S.phase(t);
+  stepSpans.forEach((s, i) => {
+    const on = i === ph, done = i < ph;
+    css(s, { color: on ? k.ink : done ? k.inkMuted : k.line, opacity: ease.out(seg(t, 1.0, 1.6)) });
+    css(s.firstChild, { background: on ? k.hint : done ? k.success : k.line, transform: `scale(${on ? 1.3 : 1})` });
+  });
+  end(seg(t, S.end, S.end + 3.2), t);
+});
+</script>
+</body></html>

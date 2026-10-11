@@ -1,0 +1,591 @@
+{
+ "levels": [
+  {
+   "id": 1,
+   "title": "Level 1 · First steps",
+   "blurb": "The rules, scanning, candidates and the three singles."
+  },
+  {
+   "id": 2,
+   "title": "Level 2 · Beginner",
+   "blurb": "Keep notes tidy, then use intersections, pairs and triples."
+  },
+  {
+   "id": 3,
+   "title": "Level 3 · Intermediate",
+   "blurb": "Fish, wings, colouring and your first chains."
+  },
+  {
+   "id": 4,
+   "title": "Level 4 · Advanced",
+   "blurb": "Finned fish, uniqueness, longer chains and almost locked sets."
+  },
+  {
+   "id": 5,
+   "title": "Level 5 · Expert",
+   "blurb": "Sue de Coq and forcing chains, the last resort."
+  }
+ ],
+ "lessons": [
+  {
+   "id": "rules",
+   "title": "The rules",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "Rows, columns and boxes: each digit once."
+  },
+  {
+   "id": "givens",
+   "title": "Givens vs your entries",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "What the puzzle gives you, and what you add."
+  },
+  {
+   "id": "scanning",
+   "title": "Scanning and cross-hatching",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "Use the digits you see to find where a digit must go."
+  },
+  {
+   "id": "full-house",
+   "title": "Full House",
+   "level": 1,
+   "kind": "technique",
+   "summary": "The last empty cell of a row, column or box."
+  },
+  {
+   "id": "hidden-single",
+   "title": "Hidden Single",
+   "level": 1,
+   "kind": "technique",
+   "summary": "A digit with only one possible cell in a unit."
+  },
+  {
+   "id": "candidates",
+   "title": "Pencil marks (candidates)",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "Write down every digit a cell could still hold."
+  },
+  {
+   "id": "naked-single",
+   "title": "Naked Single",
+   "level": 1,
+   "kind": "technique",
+   "summary": "A cell with only one candidate left."
+  },
+  {
+   "id": "contradictions",
+   "title": "Contradictions",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "How a wrong digit shows itself."
+  },
+  {
+   "id": "logic-vs-guessing",
+   "title": "Logic vs guessing",
+   "level": 1,
+   "kind": "foundation",
+   "summary": "Every move should have a reason you can explain."
+  },
+  {
+   "id": "systematic-scanning",
+   "title": "Systematic scanning",
+   "level": 2,
+   "kind": "foundation",
+   "summary": "A routine that never misses an easy move."
+  },
+  {
+   "id": "candidate-management",
+   "title": "Candidate management",
+   "level": 2,
+   "kind": "foundation",
+   "summary": "Keep your pencil marks correct as you solve."
+  },
+  {
+   "id": "pointing",
+   "title": "Pointing Pair/Triple",
+   "level": 2,
+   "kind": "technique",
+   "summary": "A digit locked to one line inside a box leaves the rest of that line."
+  },
+  {
+   "id": "box-line-reduction",
+   "title": "Box/Line Reduction",
+   "level": 2,
+   "kind": "technique",
+   "summary": "A digit locked to one box inside a line leaves the rest of that box."
+  },
+  {
+   "id": "naked-pair",
+   "title": "Naked Pair",
+   "level": 2,
+   "kind": "technique",
+   "summary": "Two cells with the same two candidates claim both digits."
+  },
+  {
+   "id": "hidden-pair",
+   "title": "Hidden Pair",
+   "level": 2,
+   "kind": "technique",
+   "summary": "Two digits that fit only two cells reserve those cells."
+  },
+  {
+   "id": "naked-triple",
+   "title": "Naked Triple",
+   "level": 2,
+   "kind": "technique",
+   "summary": "Three cells holding only three digits between them."
+  },
+  {
+   "id": "hidden-triple",
+   "title": "Hidden Triple",
+   "level": 2,
+   "kind": "technique",
+   "summary": "Three digits that fit only three cells reserve those cells."
+  },
+  {
+   "id": "x-wing",
+   "title": "X-Wing",
+   "level": 3,
+   "kind": "technique",
+   "summary": "A digit restricted to the same two columns in two rows."
+  },
+  {
+   "id": "chains-intro",
+   "title": "Strong and weak links",
+   "level": 3,
+   "kind": "foundation",
+   "summary": "The two kinds of link behind every chain."
+  },
+  {
+   "id": "skyscraper",
+   "title": "Skyscraper",
+   "level": 3,
+   "kind": "technique",
+   "summary": "Two conjugate pairs that share a base line."
+  },
+  {
+   "id": "two-string-kite",
+   "title": "Two-String Kite",
+   "level": 3,
+   "kind": "technique",
+   "summary": "A row pair and a column pair tied together in a box."
+  },
+  {
+   "id": "simple-coloring",
+   "title": "Simple Colouring",
+   "level": 3,
+   "kind": "technique",
+   "summary": "Colour the conjugate pairs of one digit in two colours."
+  },
+  {
+   "id": "swordfish",
+   "title": "Swordfish",
+   "level": 3,
+   "kind": "technique",
+   "summary": "An X-Wing with three lines."
+  },
+  {
+   "id": "xy-wing",
+   "title": "XY-Wing",
+   "level": 3,
+   "kind": "technique",
+   "summary": "A bivalue pivot and two pincers that share a digit."
+  },
+  {
+   "id": "xyz-wing",
+   "title": "XYZ-Wing",
+   "level": 3,
+   "kind": "technique",
+   "summary": "An XY-Wing whose pivot also holds the shared digit."
+  },
+  {
+   "id": "naked-quad",
+   "title": "Naked Quad",
+   "level": 3,
+   "kind": "technique",
+   "summary": "Four cells holding only four digits between them."
+  },
+  {
+   "id": "hidden-quad",
+   "title": "Hidden Quad",
+   "level": 3,
+   "kind": "technique",
+   "summary": "Four digits that fit only four cells reserve those cells."
+  },
+  {
+   "id": "turbot-fish",
+   "title": "Turbot Fish",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Strong – weak – strong on one digit."
+  },
+  {
+   "id": "finned-x-wing",
+   "title": "Finned X-Wing",
+   "level": 4,
+   "kind": "technique",
+   "summary": "An almost-X-Wing with extra candidates in one box."
+  },
+  {
+   "id": "finned-swordfish",
+   "title": "Finned Swordfish",
+   "level": 4,
+   "kind": "technique",
+   "summary": "A Swordfish with fins in one box."
+  },
+  {
+   "id": "jellyfish",
+   "title": "Jellyfish",
+   "level": 4,
+   "kind": "technique",
+   "summary": "A fish with four lines."
+  },
+  {
+   "id": "w-wing",
+   "title": "W-Wing",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Two identical bivalue cells joined by a conjugate pair."
+  },
+  {
+   "id": "unique-rectangle-1",
+   "title": "Unique Rectangle Type 1",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Three corners of a deadly rectangle protect the fourth."
+  },
+  {
+   "id": "unique-rectangle-2",
+   "title": "Unique Rectangle Type 2",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Two roof corners share one extra digit."
+  },
+  {
+   "id": "unique-rectangle-4",
+   "title": "Unique Rectangle Type 4",
+   "level": 4,
+   "kind": "technique",
+   "summary": "A locked digit on the roof removes the other."
+  },
+  {
+   "id": "bug-plus-one",
+   "title": "BUG+1",
+   "level": 4,
+   "kind": "technique",
+   "summary": "All cells bivalue but one: that one takes its extra digit."
+  },
+  {
+   "id": "x-chain",
+   "title": "X-Chain",
+   "level": 4,
+   "kind": "technique",
+   "summary": "A longer alternating chain on one digit."
+  },
+  {
+   "id": "xy-chain",
+   "title": "XY-Chain",
+   "level": 4,
+   "kind": "technique",
+   "summary": "A chain of bivalue cells."
+  },
+  {
+   "id": "aic",
+   "title": "Alternating Inference Chain",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Chains that mix cells, pairs and digits."
+  },
+  {
+   "id": "als-xz",
+   "title": "ALS-XZ",
+   "level": 4,
+   "kind": "technique",
+   "summary": "Two almost locked sets share a restricted digit."
+  },
+  {
+   "id": "sue-de-coq",
+   "title": "Sue de Coq",
+   "level": 5,
+   "kind": "technique",
+   "summary": "Digits locked into a line and a box at once."
+  },
+  {
+   "id": "forcing-chain",
+   "title": "Forcing Chain",
+   "level": 5,
+   "kind": "technique",
+   "summary": "Try every option; keep only what they all agree on."
+  }
+ ],
+ "techniques": [
+  {
+   "id": "full-house",
+   "name": "Full House",
+   "level": 1,
+   "tier": "easy",
+   "family": "singles",
+   "description": "A row, column or box has one empty cell left; it gets the missing digit."
+  },
+  {
+   "id": "hidden-single",
+   "name": "Hidden Single",
+   "level": 1,
+   "tier": "easy",
+   "family": "singles",
+   "description": "A digit has only one possible cell in a row, column or box."
+  },
+  {
+   "id": "naked-single",
+   "name": "Naked Single",
+   "level": 1,
+   "tier": "easy",
+   "family": "singles",
+   "description": "A cell has only one candidate left."
+  },
+  {
+   "id": "pointing",
+   "name": "Pointing Pair/Triple",
+   "level": 2,
+   "tier": "medium",
+   "family": "intersections",
+   "description": "Inside a box a digit is confined to one row or column, so it leaves the rest of that line."
+  },
+  {
+   "id": "box-line-reduction",
+   "name": "Box/Line Reduction",
+   "level": 2,
+   "tier": "medium",
+   "family": "intersections",
+   "description": "Inside a row or column a digit is confined to one box, so it leaves the rest of that box."
+  },
+  {
+   "id": "naked-pair",
+   "name": "Naked Pair",
+   "level": 2,
+   "tier": "medium",
+   "family": "subsets",
+   "description": "Two cells in a unit share the same two candidates; those digits leave the rest of the unit."
+  },
+  {
+   "id": "hidden-pair",
+   "name": "Hidden Pair",
+   "level": 2,
+   "tier": "medium",
+   "family": "subsets",
+   "description": "Two digits can only go in the same two cells of a unit; other candidates leave those cells."
+  },
+  {
+   "id": "naked-triple",
+   "name": "Naked Triple",
+   "level": 2,
+   "tier": "medium",
+   "family": "subsets",
+   "description": "Three cells in a unit hold only three digits between them; those digits leave the rest of the unit."
+  },
+  {
+   "id": "hidden-triple",
+   "name": "Hidden Triple",
+   "level": 2,
+   "tier": "medium",
+   "family": "subsets",
+   "description": "Three digits can only go in the same three cells of a unit; other candidates leave those cells."
+  },
+  {
+   "id": "x-wing",
+   "name": "X-Wing",
+   "level": 3,
+   "tier": "hard",
+   "family": "fish",
+   "description": "In two rows a digit fits only the same two columns (or vice versa); it leaves the rest of those columns."
+  },
+  {
+   "id": "skyscraper",
+   "name": "Skyscraper",
+   "level": 3,
+   "tier": "hard",
+   "family": "single-digit",
+   "description": "Two conjugate pairs in parallel lines share one end line; a cell seeing both other ends loses the digit."
+  },
+  {
+   "id": "two-string-kite",
+   "name": "Two-String Kite",
+   "level": 3,
+   "tier": "hard",
+   "family": "single-digit",
+   "description": "A row conjugate pair and a column conjugate pair meet in a box; a cell seeing both far ends loses the digit."
+  },
+  {
+   "id": "xy-wing",
+   "name": "XY-Wing",
+   "level": 3,
+   "tier": "hard",
+   "family": "wings",
+   "description": "A bivalue pivot {x,y} sees pincers {x,z} and {y,z}; cells seeing both pincers lose z."
+  },
+  {
+   "id": "xyz-wing",
+   "name": "XYZ-Wing",
+   "level": 3,
+   "tier": "hard",
+   "family": "wings",
+   "description": "A pivot {x,y,z} sees pincers {x,z} and {y,z}; cells seeing all three lose z."
+  },
+  {
+   "id": "simple-coloring",
+   "name": "Simple Colouring",
+   "level": 3,
+   "tier": "hard",
+   "family": "coloring",
+   "description": "Colour chains of conjugate pairs of one digit in two colours; exactly one colour is true."
+  },
+  {
+   "id": "swordfish",
+   "name": "Swordfish",
+   "level": 3,
+   "tier": "hard",
+   "family": "fish",
+   "description": "In three rows a digit fits only the same three columns (or vice versa); it leaves the rest of those columns."
+  },
+  {
+   "id": "naked-quad",
+   "name": "Naked Quad",
+   "level": 3,
+   "tier": "hard",
+   "family": "subsets",
+   "description": "Four cells in a unit hold only four digits between them; those digits leave the rest of the unit."
+  },
+  {
+   "id": "hidden-quad",
+   "name": "Hidden Quad",
+   "level": 3,
+   "tier": "hard",
+   "family": "subsets",
+   "description": "Four digits can only go in the same four cells of a unit; other candidates leave those cells."
+  },
+  {
+   "id": "turbot-fish",
+   "name": "Turbot Fish",
+   "level": 4,
+   "tier": "hard",
+   "family": "single-digit",
+   "description": "Strong link, weak link, strong link on one digit; a cell seeing both ends loses the digit."
+  },
+  {
+   "id": "w-wing",
+   "name": "W-Wing",
+   "level": 4,
+   "tier": "hard",
+   "family": "wings",
+   "description": "Two identical bivalue cells {x,y} joined by a conjugate pair on x; cells seeing both lose y."
+  },
+  {
+   "id": "unique-rectangle-1",
+   "name": "Unique Rectangle Type 1",
+   "level": 4,
+   "tier": "hard",
+   "family": "uniqueness",
+   "description": "Three corners of a two-box rectangle are exactly {a,b}; the fourth corner cannot be a or b."
+  },
+  {
+   "id": "unique-rectangle-2",
+   "name": "Unique Rectangle Type 2",
+   "level": 4,
+   "tier": "hard",
+   "family": "uniqueness",
+   "description": "Two corners are {a,b} and the other two are {a,b,x}; cells seeing both x corners lose x."
+  },
+  {
+   "id": "unique-rectangle-4",
+   "name": "Unique Rectangle Type 4",
+   "level": 4,
+   "tier": "hard",
+   "family": "uniqueness",
+   "description": "Two corners are {a,b}; if a is locked to the other two corners in a unit, those corners lose b."
+  },
+  {
+   "id": "bug-plus-one",
+   "name": "BUG+1",
+   "level": 4,
+   "tier": "hard",
+   "family": "uniqueness",
+   "description": "All empty cells are bivalue except one; that cell takes the digit that appears three times in its units."
+  },
+  {
+   "id": "finned-x-wing",
+   "name": "Finned X-Wing",
+   "level": 4,
+   "tier": "hard",
+   "family": "fish",
+   "description": "An X-Wing with extra candidates (fins) in one box; cells in the cover lines that see the fins lose the digit."
+  },
+  {
+   "id": "jellyfish",
+   "name": "Jellyfish",
+   "level": 4,
+   "tier": "hard",
+   "family": "fish",
+   "description": "In four rows a digit fits only the same four columns (or vice versa)."
+  },
+  {
+   "id": "finned-swordfish",
+   "name": "Finned Swordfish",
+   "level": 4,
+   "tier": "hard",
+   "family": "fish",
+   "description": "A Swordfish with fins in one box; cells in the cover lines that see the fins lose the digit."
+  },
+  {
+   "id": "x-chain",
+   "name": "X-Chain",
+   "level": 4,
+   "tier": "expert",
+   "family": "chains",
+   "description": "An alternating chain of strong and weak links on one digit; cells seeing both ends lose the digit."
+  },
+  {
+   "id": "xy-chain",
+   "name": "XY-Chain",
+   "level": 4,
+   "tier": "expert",
+   "family": "chains",
+   "description": "A chain of bivalue cells, each linked to the next by a shared digit; cells seeing both ends lose the end digit."
+  },
+  {
+   "id": "aic",
+   "name": "Alternating Inference Chain",
+   "level": 4,
+   "tier": "expert",
+   "family": "chains",
+   "description": "A chain mixing bivalue cells and conjugate pairs across digits; candidates that conflict with both ends are removed."
+  },
+  {
+   "id": "als-xz",
+   "name": "ALS-XZ",
+   "level": 4,
+   "tier": "expert",
+   "family": "als",
+   "description": "Two almost locked sets share a restricted common digit X; a common digit Z leaves cells seeing all its copies."
+  },
+  {
+   "id": "sue-de-coq",
+   "name": "Sue de Coq",
+   "level": 5,
+   "tier": "expert",
+   "family": "als",
+   "description": "Cells at a box/line intersection plus cells from the line and box lock their digits into the line or box."
+  },
+  {
+   "id": "forcing-chain",
+   "name": "Forcing Chain",
+   "level": 5,
+   "tier": "expert",
+   "family": "forcing",
+   "description": "Try every candidate of a cell (or every place for a digit in a unit); if all lead to the same result, it is true."
+  }
+ ]
+}

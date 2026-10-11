@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Play screenshot</title>
+<style>
+  .head{position:absolute;left:80px;right:80px;top:96px;text-align:center}
+  .head h1{margin:0;font-size:78px;font-weight:900;letter-spacing:-0.025em;line-height:1.06}
+  .head p{margin:22px 0 0;font-size:38px;font-weight:600}
+</style></head>
+<body>
+<script type="module">
+// Google Play phone screenshot, 1080x1920 (exported as 24-bit PNG, no alpha). ?n=1..6
+// Caption band in brand style + a REAL app capture from marketing/captures (scripts/capture-app.mjs).
+// Captions follow the "Screenshot plan" in docs/PLAY_STORE.md.
+import { stage, baseCSS, div, TOKENS, phoneShot, stillReady, params } from '../lib/pm.js';
+const PLAN = {
+  1: { file: 'play-notes', title: 'Classic Sudoku,<br>beautifully calm', sub: 'Notes, auto-notes, undo and redo' },
+  2: { file: 'hint-2-where', title: 'Hints that teach,<br>not tell', sub: 'Nudge, technique, where, then why' },
+  3: { file: 'learn-map', title: 'From first steps to<br>advanced techniques', sub: '42 lessons in five levels' },
+  4: { file: 'lesson-demo-3-effect', title: 'See exactly why<br>each move works', sub: 'Worked examples on real puzzles' },
+  5: { file: 'play-dark', title: 'Easy on the eyes,<br>day or night', sub: 'Light, dark and high contrast', theme: 'dark' },
+  6: { file: 'stats', title: 'Track your progress<br>offline', sub: 'Stats and streaks stay on your device' },
+};
+const n = Number(params.get('n') || 1);
+const P = PLAN[n];
+const theme = P.theme || 'light';
+const { W } = stage();
+baseCSS(theme);
+const k = TOKENS[theme];
+div('paperGrid').style.opacity = 0.4;
+div('head', document.body, `<h1>${P.title}</h1><p style="color:${k.inkMuted}">${P.sub}</p>`);
+phoneShot(document.body, `../../captures/${P.file}.png`, { x: W / 2, y: 430, h: 1440, theme });
+await stillReady();
+</script>
+</body></html>

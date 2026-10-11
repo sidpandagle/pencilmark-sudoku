@@ -1,0 +1,367 @@
+{
+ "puzzle": "5.2...697..4...1...63..7254..974..283...5...14.7.819...48219.36..5...412.31..48.9",
+ "difficulty": "easy",
+ "grid": [
+  5,
+  0,
+  2,
+  0,
+  0,
+  0,
+  6,
+  9,
+  7,
+  0,
+  0,
+  4,
+  0,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  6,
+  3,
+  0,
+  0,
+  7,
+  2,
+  5,
+  4,
+  0,
+  0,
+  9,
+  7,
+  4,
+  0,
+  0,
+  2,
+  8,
+  3,
+  0,
+  0,
+  0,
+  5,
+  0,
+  0,
+  0,
+  1,
+  4,
+  0,
+  7,
+  0,
+  8,
+  1,
+  9,
+  0,
+  0,
+  0,
+  4,
+  8,
+  2,
+  1,
+  9,
+  0,
+  3,
+  6,
+  0,
+  0,
+  5,
+  0,
+  0,
+  0,
+  4,
+  1,
+  2,
+  0,
+  3,
+  1,
+  0,
+  0,
+  4,
+  8,
+  0,
+  9
+ ],
+ "solution": [
+  5,
+  1,
+  2,
+  4,
+  3,
+  8,
+  6,
+  9,
+  7,
+  9,
+  7,
+  4,
+  6,
+  2,
+  5,
+  1,
+  8,
+  3,
+  8,
+  6,
+  3,
+  1,
+  9,
+  7,
+  2,
+  5,
+  4,
+  1,
+  5,
+  9,
+  7,
+  4,
+  6,
+  3,
+  2,
+  8,
+  3,
+  8,
+  6,
+  9,
+  5,
+  2,
+  7,
+  4,
+  1,
+  4,
+  2,
+  7,
+  3,
+  8,
+  1,
+  9,
+  6,
+  5,
+  7,
+  4,
+  8,
+  2,
+  1,
+  9,
+  5,
+  3,
+  6,
+  6,
+  9,
+  5,
+  8,
+  7,
+  3,
+  4,
+  1,
+  2,
+  2,
+  3,
+  1,
+  5,
+  6,
+  4,
+  8,
+  7,
+  9
+ ],
+ "order": [
+  {
+   "cell": 38,
+   "digit": 6,
+   "technique": "full-house"
+  },
+  {
+   "cell": 3,
+   "digit": 4,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 21,
+   "digit": 1,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 1,
+   "digit": 1,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 17,
+   "digit": 3,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 16,
+   "digit": 8,
+   "technique": "full-house"
+  },
+  {
+   "cell": 53,
+   "digit": 5,
+   "technique": "full-house"
+  },
+  {
+   "cell": 18,
+   "digit": 8,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 22,
+   "digit": 9,
+   "technique": "full-house"
+  },
+  {
+   "cell": 5,
+   "digit": 8,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 4,
+   "digit": 3,
+   "technique": "full-house"
+  },
+  {
+   "cell": 27,
+   "digit": 1,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 28,
+   "digit": 5,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 37,
+   "digit": 8,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 46,
+   "digit": 2,
+   "technique": "full-house"
+  },
+  {
+   "cell": 41,
+   "digit": 2,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 13,
+   "digit": 2,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 39,
+   "digit": 9,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 33,
+   "digit": 3,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 32,
+   "digit": 6,
+   "technique": "full-house"
+  },
+  {
+   "cell": 48,
+   "digit": 3,
+   "technique": "full-house"
+  },
+  {
+   "cell": 52,
+   "digit": 6,
+   "technique": "full-house"
+  },
+  {
+   "cell": 12,
+   "digit": 6,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 14,
+   "digit": 5,
+   "technique": "full-house"
+  },
+  {
+   "cell": 68,
+   "digit": 3,
+   "technique": "full-house"
+  },
+  {
+   "cell": 43,
+   "digit": 4,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 42,
+   "digit": 7,
+   "technique": "full-house"
+  },
+  {
+   "cell": 60,
+   "digit": 5,
+   "technique": "full-house"
+  },
+  {
+   "cell": 79,
+   "digit": 7,
+   "technique": "full-house"
+  },
+  {
+   "cell": 54,
+   "digit": 7,
+   "technique": "full-house"
+  },
+  {
+   "cell": 10,
+   "digit": 7,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 9,
+   "digit": 9,
+   "technique": "full-house"
+  },
+  {
+   "cell": 64,
+   "digit": 9,
+   "technique": "full-house"
+  },
+  {
+   "cell": 72,
+   "digit": 2,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 63,
+   "digit": 6,
+   "technique": "full-house"
+  },
+  {
+   "cell": 75,
+   "digit": 5,
+   "technique": "hidden-single"
+  },
+  {
+   "cell": 76,
+   "digit": 6,
+   "technique": "full-house"
+  },
+  {
+   "cell": 66,
+   "digit": 8,
+   "technique": "full-house"
+  },
+  {
+   "cell": 67,
+   "digit": 7,
+   "technique": "full-house"
+  }
+ ]
+}

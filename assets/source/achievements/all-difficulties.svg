@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" color="#1E2733" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- All difficulties: the four difficulty shapes (circle, diamond, hexagon, star) -->
+  <circle cx="7" cy="7" r="3.2"/>
+  <path d="M17 3.5l3.5 3.5-3.5 3.5-3.5-3.5Z"/>
+  <path d="M7 13.4l3.1 1.8v3.6L7 20.6l-3.1-1.8v-3.6Z"/>
+  <path d="M17 13.3l1.12 2.46 2.68.3-1.99 1.83.54 2.65L17 19.2l-2.35 1.34.54-2.65-1.99-1.83 2.68-.3Z"/>
+</svg>

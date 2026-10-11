@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
+  <!--
+    Google Play feature graphic: 1024x500, exported as 24-bit PNG (no alpha).
+    Left: brand mark, wordmark, tagline. Right: a calm board fragment with givens, player digits and notes.
+    Keep key content away from the edges; Play may overlay a play button in the centre for videos.
+    #idot is repositioned over the dotless i by scripts/export-assets.mjs.
+  -->
+  <defs>
+    <linearGradient id="inkBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2D5193"/>
+      <stop offset="1" stop-color="#1B2B47"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="500" fill="#F4F1EA"/>
+
+  <!-- board fragment -->
+  <g transform="translate(640 40) rotate(-6 210 210)">
+    <rect x="0" y="0" width="460" height="460" rx="18" fill="#FFFDF8" stroke="#2E3946" stroke-width="5"/>
+    <g stroke="#C9C2B4" stroke-width="2">
+      <path d="M51 0v460M102 0v460M204 0v460M255 0v460M357 0v460M408 0v460"/>
+      <path d="M0 51h460M0 102h460M0 204h460M0 255h460M0 357h460M0 408h460"/>
+    </g>
+    <g stroke="#2E3946" stroke-width="4">
+      <path d="M153 0v460M306 0v460M0 153h460M0 306h460"/>
+    </g>
+    <rect x="153" y="153" width="51" height="51" fill="#DCE6F6"/>
+    <g font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="30" text-anchor="middle">
+      <g fill="#1E2733" font-weight="600">
+        <text x="25.5" y="36">5</text><text x="127.5" y="36">8</text><text x="229.5" y="36">2</text>
+        <text x="76.5" y="87">3</text><text x="331.5" y="87">7</text>
+        <text x="25.5" y="138">9</text><text x="280.5" y="138">4</text>
+        <text x="127.5" y="189">6</text><text x="382.5" y="189">1</text>
+        <text x="76.5" y="240">2</text><text x="229.5" y="240">9</text>
+        <text x="331.5" y="291">5</text><text x="25.5" y="291">7</text>
+      </g>
+      <g fill="#2F5DA8" font-weight="500">
+        <text x="178.5" y="189">4</text><text x="280.5" y="240">8</text><text x="127.5" y="291">1</text>
+      </g>
+    </g>
+    <!-- notes (pencil marks) -->
+    <g fill="#5E6B7A" font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12" text-anchor="middle">
+      <text x="161.5" y="115">1</text><text x="195.5" y="115">3</text><text x="161.5" y="149">7</text>
+      <text x="212.5" y="64">1</text><text x="246.5" y="81">6</text>
+      <text x="76.5" y="183">5</text><text x="76.5" y="200">8</text><text x="93.5" y="200">9</text>
+    </g>
+    <circle cx="195.5" cy="111" r="10" fill="none" stroke="#C98A1B" stroke-width="2.5"/>
+  </g>
+
+  <!-- brand block -->
+  <g transform="translate(80 92) scale(0.1172)">
+    <rect width="1024" height="1024" rx="224" fill="url(#inkBlue)"/>
+    <g transform="translate(212 212)">
+      <g fill="none" stroke="#F4F1EA" stroke-linecap="round">
+        <rect x="14" y="14" width="572" height="572" rx="56" stroke-width="28"/>
+        <path d="M200 14V586M400 14V586M14 200H586M14 400H586" stroke-width="16"/>
+      </g>
+      <g fill="#8DB2FF">
+        <circle cx="66" cy="66" r="17"/><circle cx="118" cy="66" r="17"/><circle cx="66" cy="118" r="17"/>
+      </g>
+      <g transform="translate(300 300) rotate(-45)">
+        <rect x="-88" y="-24" width="20" height="48" rx="6" fill="#8DB2FF"/>
+        <rect x="-64" y="-24" width="100" height="48" fill="#F2C062"/>
+        <path d="M36 -24L88 0L36 24Z" fill="#F4E6C8"/>
+        <path d="M71 -7.8L88 0L71 7.8Z" fill="#1E2733"/>
+      </g>
+    </g>
+  </g>
+  <text id="wordtext" x="74" y="320" fill="#1E2733"
+        font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-weight="900" font-size="92"
+        letter-spacing="-2">Penc<tspan id="dotless">&#x131;</tspan>lmark</text>
+  <rect id="idot" x="260" y="236" width="19" height="19" rx="3" fill="#2F5DA8"/>
+  <text x="80" y="378" fill="#5E6B7A" font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+        font-weight="600" font-size="32">Learn to see the logic.</text>
+</svg>

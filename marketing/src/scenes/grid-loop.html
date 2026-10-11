@@ -1,0 +1,55 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Grid loop</title>
+<style>.tick{position:absolute;left:90px;right:140px;top:1440px;font-size:40px;font-weight:700;text-align:center;white-space:nowrap}</style></head>
+<body>
+<script type="module">
+// Number-placement loop (8 s, seamless: the first and last frames are identical).
+// A real puzzle from the engine practice bank (data/solve-loop.json) is filled in the exact order the
+// logical solver places digits; the ticker names the technique behind each placement.
+import { stage, baseCSS, register, loadJSON, Board, div, css, seg, ease, TOKENS, wordmark } from '../lib/pm.js';
+const { W, H } = stage();
+baseCSS('light');
+const k = TOKENS.light;
+const D = await loadJSON('../../data/solve-loop.json');
+const curr = await loadJSON('../../data/curriculum.json');
+const tname = Object.fromEntries(curr.techniques.map((t) => [t.id, t.name]));
+div('paperGrid').style.opacity = 0.35;
+const wmBox = div('abs'); wmBox.style.cssText = 'position:absolute;left:0;right:0;top:250px;text-align:center';
+const wm = wordmark(wmBox, { size: 96 });
+const B = new Board(document.body, { x: 115, y: 470, size: 850 });
+const tick = div('tick');
+const N = D.order.length;
+const givenRank = []; let g = 0;
+for (let c = 0; c < 81; c++) if (D.grid[c]) givenRank[c] = g++;
+const placeAt = (i) => 1.7 + (i / N) * 3.9;
+
+register(8.0, (t) => {
+  B.begin();
+  const out = seg(t, 6.7, 7.5);
+  B.lines(ease.inOut(seg(t, 0.0, 0.8)) * (1 - ease.inOut(seg(t, 7.3, 8.0))), ease.inOut(seg(t, 0.0, 0.7)) * (1 - ease.inOut(seg(t, 7.4, 8.0))));
+  for (let c = 0; c < 81; c++) if (D.grid[c]) {
+    const p = seg(t, 0.6 + givenRank[c] * 0.03, 0.85 + givenRank[c] * 0.03);
+    const o = 1 - seg(t, 6.7 + (givenRank[c] / g) * 0.5, 7.0 + (givenRank[c] / g) * 0.5);
+    B.digit(c, D.grid[c], { op: Math.min(p, o), scale: 0.7 + 0.3 * ease.back(p) });
+  }
+  let current = null;
+  D.order.forEach((pl, i) => {
+    const a = placeAt(i), p = seg(t, a, a + 0.3);
+    if (p <= 0) return;
+    current = pl;
+    const o = 1 - seg(t, 6.75 + (i / N) * 0.5, 7.05 + (i / N) * 0.5);
+    B.digit(pl.cell, pl.digit, { op: Math.min(p * 2, o), scale: 1.5 - 0.5 * ease.back(p), color: k.accent, weight: 500 });
+    B.shade(pl.cell, k.success, 0.35 * (1 - seg(t, a + 0.1, a + 0.9)));
+  });
+  const done = seg(t, 5.7, 6.0) * (1 - seg(t, 6.5, 6.9));
+  for (let c = 0; c < 81; c++) B.shade(c, k.success, 0.12 * done);
+  B.end();
+  const show = seg(t, 1.6, 1.9) * (1 - seg(t, 6.6, 6.9));
+  if (current) tick.innerHTML = t < 5.75 ? `<span style="color:${k.inkMuted}">Solved by logic:</span> ${tname[current.technique]}` : `<span style="color:${k.success}">Solved. No guessing.</span>`;
+  else tick.innerHTML = '';
+  css(tick, { opacity: show });
+  const w = ease.out(seg(t, 0.2, 0.8)) * (1 - ease.inOut(seg(t, 7.2, 7.9)));
+  css(wm, { opacity: w });
+});
+</script>
+</body></html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Hard: hexagon + 3 candidate dots. -->
+  <path d="M12 2L20.66 7V17L12 22 3.34 17V7Z" fill="#F9E3D2" stroke="#D2691E" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="9.6" cy="10.4" r="1.5" fill="#D2691E"/>
+  <circle cx="14.4" cy="10.4" r="1.5" fill="#D2691E"/>
+  <circle cx="12" cy="14.6" r="1.5" fill="#D2691E"/>
+</svg>

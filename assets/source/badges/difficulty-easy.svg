@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Easy: circle + 1 candidate dot. Shape and dot count carry meaning, not just colour. -->
+  <circle cx="12" cy="12" r="9.5" fill="#DDEFE5" stroke="#2E7D55" stroke-width="2"/>
+  <circle cx="12" cy="12" r="1.8" fill="#2E7D55"/>
+</svg>

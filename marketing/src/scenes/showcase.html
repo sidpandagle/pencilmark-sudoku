@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Feature showcase</title>
+<style>
+  .cap{position:absolute;left:72px;right:140px;top:190px;height:230px}
+  .cap > div{font-size:62px;font-weight:900;letter-spacing:-0.02em;line-height:1.08}
+  .cap small{display:block;font-size:34px;font-weight:600;letter-spacing:0;margin-top:14px}
+  .phone{position:absolute;border-radius:64px;background:#141A22;box-shadow:0 40px 80px rgba(30,39,51,.28),0 0 0 2px #2E3946 inset}
+  .screen{position:absolute;left:16px;top:16px;right:16px;bottom:16px;border-radius:50px;overflow:hidden;background:#F4F1EA}
+  .screen img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+  .tag{position:absolute;right:150px;top:1770px;font-size:24px;font-weight:600}
+</style></head>
+<body>
+<script type="module">
+// Feature showcase (25 s). Every screen inside the phone is a REAL capture of the app's web build
+// (marketing/captures, made by scripts/capture-app.mjs); only the frame, captions and transitions are animated.
+import { stage, baseCSS, register, div, css, seg, ease, env, TOKENS, endCard, captions } from '../lib/pm.js';
+const { W, H } = stage();
+baseCSS('light');
+const k = TOKENS.light;
+div('paperGrid').style.opacity = 0.35;
+const capbox = div('cap');
+const PH = 1330, PW = Math.round(((PH - 32) * 1170) / 2532) + 32;
+const phone = div('phone'); phone.style.cssText += `;width:${PW}px;height:${PH}px;left:${(W - PW) / 2}px;top:450px`;
+const screen = div('screen', phone);
+const tag = div('tag muted', document.body, 'Real app screens');
+// [capture file, start time]
+const SLIDES = [
+  ['home', 0.0], ['play-start', 3.0], ['play-entries', 4.4],
+  ['notes-1-manual', 6.0], ['notes-1b-manual', 6.7], ['notes-2-autofill', 7.5], ['play-notes', 8.5],
+  ['hint-0-nudge', 9.6], ['hint-1-technique', 10.7], ['hint-2-where', 11.8], ['hint-3-explain', 12.9],
+  ['learn-map', 14.2], ['lesson-demo-2-pattern', 15.6], ['lesson-demo-3-effect', 16.6],
+  ['play-dark', 17.8], ['stats', 19.8], ['stats', 21.9],
+];
+const imgs = SLIDES.map(([f]) => { const i = document.createElement('img'); i.src = `../../captures/${f}.png`; screen.appendChild(i); return i; });
+await Promise.all(imgs.map((i) => i.decode()));
+const cap = (h, s) => `${h}<small class="muted">${s}</small>`;
+const capRender = captions(capbox, [
+  { a: 0.3, b: 3.0, text: cap('Pencilmark Sudoku', 'Learn to see the logic.') },
+  { a: 3.0, b: 6.0, text: cap('Classic Sudoku,<br>beautifully calm', 'Four difficulty levels, graded by technique') },
+  { a: 6.0, b: 9.6, text: cap('Pencil marks your way', 'Type notes or auto-fill them') },
+  { a: 9.6, b: 14.2, text: cap('Hints that teach,<br>not tell', 'Nudge, technique, where, then why') },
+  { a: 14.2, b: 17.8, text: cap('From first steps<br>to advanced techniques', '42 lessons with worked examples') },
+  { a: 17.8, b: 19.8, text: cap('Easy on the eyes,<br>day or night', 'Light, dark and high contrast') },
+  { a: 19.8, b: 21.9, text: cap('Track your progress', 'Stats and streaks, stored on your device') },
+]);
+const end = endCard(W, H);
+register(25.0, (t) => {
+  capRender(t);
+  const enter = ease.out(seg(t, 0, 0.8));
+  css(phone, { transform: `translateY(${(1 - enter) * 300}px)`, opacity: Math.min(1, enter * 1.5) });
+  css(tag, { opacity: enter * (1 - seg(t, 21.6, 22.0)) });
+  SLIDES.forEach(([f, a], i) => {
+    const next = SLIDES[i + 1]?.[1] ?? 99;
+    const fin = i === 0 ? 1 : ease.out(seg(t, a, a + 0.28));
+    const visible = t >= a && t < next + 0.3 ? fin : 0;
+    // small push for scene changes, none for step-by-step sequences (same screen, next state)
+    css(imgs[i], { opacity: visible, zIndex: i });
+  });
+  end(seg(t, 21.9, 25.0), t);
+});
+</script>
+</body></html>

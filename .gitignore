@@ -39,3 +39,15 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# release signing secrets (keystore lives in D:\dev\keys, outside the repo; never commit)
+*.keystore
+*.jks
+keystore.properties
+*keystore*.properties
+*-upload.properties
+pencilmark-upload.*
+
+# Playwright
+test-results/
+playwright-report/
